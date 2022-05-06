@@ -54,7 +54,7 @@ class Scrn1 extends StatelessWidget {
                                       end: Alignment.bottomCenter,
                                       colors: [
                                         const Color(0xff00796b),
-                                        const Color(0xff000000)
+                                        const Color(0xff000000),
                                       ])),
                               child: TextButton(
                                   onPressed: () {

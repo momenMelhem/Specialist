@@ -1,10 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:specialist/registratoin.dart';
 
 import 'main_page.dart';
 
-class Suc extends StatelessWidget {
+class Suc extends StatefulWidget {
   const Suc({Key? key}) : super(key: key);
+
+  @override
+  State<Suc> createState() => _SucState();
+}
+
+class _SucState extends State<Suc> {
+  bool _passwordVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -62,14 +70,23 @@ class Suc extends StatelessWidget {
                           ),
                           TextFormField(
                             textAlign: TextAlign.center,
+                            keyboardType: TextInputType.text,
+                            obscureText: _passwordVisible,
                             decoration: InputDecoration(
                               hintText: " كلمة السر",
                               hintStyle: TextStyle(
                                   color: Colors.grey[900],
                                   fontWeight: FontWeight.bold),
-                              prefixIcon: Icon(
-                                Icons.remove_red_eye_outlined,
-                                color: Colors.grey[900],
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _passwordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: Colors.grey[900],
+                                ),
+                                onPressed: () {
+                                  _togglePasswordView();
+                                },
                               ),
                             ),
                           ),
@@ -119,7 +136,13 @@ class Suc extends StatelessWidget {
                                         const Color(0xff00897b)
                                       ])),
                               child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => FormScreen(),
+                                      ));
+                                },
                                 child: Text(
                                   "انشاء حساب ",
                                   style: TextStyle(
@@ -139,5 +162,11 @@ class Suc extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _togglePasswordView() {
+    setState(() {
+      _passwordVisible = !_passwordVisible;
+    });
   }
 }
