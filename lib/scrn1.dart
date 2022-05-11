@@ -57,12 +57,7 @@ class Scrn1 extends StatelessWidget {
                                         const Color(0xff000000),
                                       ])),
                               child: TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Suc()));
-                                  },
+                                  onPressed: () {},
                                   child: Text(
                                     "التسجيل  كمريض",
                                     style: TextStyle(
@@ -86,7 +81,12 @@ class Scrn1 extends StatelessWidget {
                                         const Color(0xff000000)
                                       ])),
                               child: TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Suc()));
+                                  },
                                   child: Text(
                                     "التسجيل  كمختص",
                                     style: TextStyle(

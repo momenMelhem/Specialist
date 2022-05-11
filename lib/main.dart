@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:specialist/profilespecialist.dart';
 import 'package:specialist/scrn1.dart';
+import 'package:flutter/services.dart';
+import 'package:time_machine/time_machine.dart';
 
+import 'Reprots.dart';
+import 'appointments.dart';
 import 'main_page.dart';
 
 void main() {

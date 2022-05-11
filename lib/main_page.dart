@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:specialist/profilespecialist.dart';
-
+import 'appointments.dart';
 import 'home-page.dart';
 
 class MyStatefulWidget extends StatefulWidget {
@@ -16,10 +16,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
+    Appointment(),
     ProfileSpecialist(),
   ];
 

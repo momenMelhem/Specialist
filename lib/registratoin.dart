@@ -8,12 +8,14 @@ class FormScreen extends StatefulWidget {
 }
 
 class FormScreenState extends State<FormScreen> {
-  String _name = '';
+  int _val = 1;
+  String _firstName = '';
+  String _lastName = '';
   String _email = '';
   String _password = '';
-  String _firstName = '';
   String _phoneNumber = '';
-  String _lastName = '';
+  DateTime _bDate = DateTime(2022, 5, 11);
+  String _major = '';
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -21,31 +23,34 @@ class FormScreenState extends State<FormScreen> {
     return TextFormField(
       decoration: const InputDecoration(labelText: 'الاسم الأول'),
       maxLength: 10,
+      keyboardType: TextInputType.name,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Name is Required';
+          return 'الاسم الاول مطلوب';
         }
 
         return null;
       },
       onSaved: (String? value) {
-        _name = value!;
+        _firstName = value!;
       },
     );
   }
 
   Widget _buildLastName() {
     return TextFormField(
+      keyboardType: TextInputType.name,
+      maxLength: 10,
       decoration: const InputDecoration(labelText: 'العائلة'),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'URL is Required';
+          return 'العائلة مطلوب';
         }
 
         return null;
       },
       onSaved: (value) {
-        _firstName = value!;
+        _lastName = value!;
       },
     );
   }
@@ -55,13 +60,13 @@ class FormScreenState extends State<FormScreen> {
       decoration: const InputDecoration(labelText: 'البريد الالتكروني'),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Email is Required';
+          return 'البريد الالكتروني مطلوب';
         }
 
         if (!RegExp(
                 r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
             .hasMatch(value)) {
-          return 'Please enter a valid email Address';
+          return 'الرجاء ادخال بريد الكتروني صالح';
         }
 
         return null;
@@ -81,7 +86,7 @@ class FormScreenState extends State<FormScreen> {
       obscureText: true,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Password is Required';
+          return 'كلمة السر مطلوب';
         }
 
         return null;
@@ -98,33 +103,112 @@ class FormScreenState extends State<FormScreen> {
       keyboardType: TextInputType.phone,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Phone number is Required';
+          return 'رقم الهاتف مطلوب';
         }
 
         return null;
       },
       onSaved: (value) {
-        _firstName = value!;
+        _phoneNumber = value!;
       },
     );
   }
 
-  Widget _buildCalories() {
+  Widget _buildMajor() {
     return TextFormField(
-      decoration: const InputDecoration(labelText: 'Calories'),
-      keyboardType: TextInputType.number,
+      decoration: const InputDecoration(labelText: 'الاختصاص'),
+      keyboardType: TextInputType.text,
       validator: (value) {
-        int? calories = int.tryParse(value!);
-
-        if (calories == null || calories <= 0) {
-          return 'Calories must be greater than 0';
+        if (value == null || value.isEmpty) {
+          return 'الاختصاص';
         }
 
         return null;
       },
       onSaved: (value) {
-        _lastName = value!;
+        _major = value!;
       },
+    );
+  }
+
+  Widget _buildBDate() {
+    return Container(
+      child: Column(
+        children: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.teal[900],
+            ),
+            child: Text(
+              'تاريخ الميلاد ',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onPressed: () async {
+              DateTime? newDate = await showDatePicker(
+                context: context,
+                initialDate: _bDate,
+                firstDate: DateTime(1900),
+                lastDate: DateTime(2023),
+              );
+              if (newDate == null) return;
+              setState(() => _bDate = newDate);
+            },
+          ),
+          Text(
+            '${_bDate.year}/${_bDate.month}/${_bDate.day}',
+          ),
+          SizedBox(height: 10),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGender() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Row(
+          children: <Widget>[
+            Radio(
+                value: 1,
+                groupValue: _val,
+                onChanged: (value) {
+                  _val = value as int;
+                  setState(() {});
+                }),
+            Text(
+              'انثى',
+              style: TextStyle(fontSize: 24),
+            )
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Radio(
+                value: 2,
+                groupValue: _val,
+                onChanged: (value) {
+                  _val = value as int;
+                  setState(() {});
+                }),
+            Text(
+              'ذكر',
+              style: TextStyle(fontSize: 24),
+            )
+          ],
+        ),
+        SizedBox(
+          width: 20,
+        ),
+        Text(
+          ': الجنس ',
+          style: TextStyle(
+            fontSize: 23,
+          ),
+        ),
+      ],
     );
   }
 
@@ -150,13 +234,19 @@ class FormScreenState extends State<FormScreen> {
                   _buildEmail(),
                   _buildPassword(),
                   _buildPhoneNumber(),
-                  _buildCalories(),
-                  const SizedBox(height: 100),
-                  RaisedButton(
+                  _buildMajor(),
+                  _buildBDate(),
+                  _buildGender(),
+                  const SizedBox(height: 70),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.teal[900],
+                    ),
                     child: Text(
-                      'Submit',
+                      'تسليم',
                       style: TextStyle(
-                        color: Colors.teal[900],
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
                     ),
@@ -167,12 +257,13 @@ class FormScreenState extends State<FormScreen> {
 
                       _formKey.currentState!.save();
 
-                      print(_name);
+                      print(_firstName);
+                      print(_lastName);
                       print(_email);
                       print(_phoneNumber);
-                      print(_firstName);
                       print(_password);
-                      print(_lastName);
+                      print(_major);
+                      print(_bDate);
 
                       //Send to API
                     },

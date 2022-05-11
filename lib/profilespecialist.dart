@@ -97,21 +97,21 @@ class ProfileSpecialist extends StatelessWidget {
                     ]),
                 borderRadius: BorderRadius.circular(16.0),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  const Text(""),
-                  const Text(
-                    "تعديل الملف الشخصي",
-                    style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Container(
+              child: TextButton(
+                onPressed: () {},
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  // ignore: prefer_const_literals_to_create_immutables
+                  children: [
+                    const Text(""),
+                    const Text(
+                      "تعديل الملف الشخصي",
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white),
+                    ),
+                    Container(
                         padding: const EdgeInsets.all(8.0),
                         decoration: const BoxDecoration(
                             shape: BoxShape.circle, color: Colors.white),
@@ -120,8 +120,8 @@ class ProfileSpecialist extends StatelessWidget {
                           size: 25.0,
                           color: Colors.green,
                         )),
-                  )
-                ],
+                  ],
+                ),
               ),
             ),
             SizedBox(
