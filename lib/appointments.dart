@@ -60,7 +60,6 @@ class _DemoAppState extends State<Appointment> {
       appBar: AppBar(
         title: Text('المواعيد'),
         backgroundColor: Colors.teal[900],
-        centerTitle: true,
       ),
       body: SafeArea(
         child: Container(

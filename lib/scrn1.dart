@@ -10,16 +10,16 @@ class Scrn1 extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [const Color(0xff00897b), const Color(0xff80cbc4)])),
+                  colors: [Color(0xff00897b), Color(0xff80cbc4)])),
           width: double.infinity,
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 50.0,
                 ),
                 Padding(
@@ -32,7 +32,7 @@ class Scrn1 extends StatelessWidget {
                         children: [
                           Container(
                             color: Colors.white,
-                            child: Text(
+                            child: const Text(
                               "Special",
                               style: TextStyle(
                                 fontFamily: 'Pacifico',
@@ -42,23 +42,23 @@ class Scrn1 extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 40.0,
                           ),
                           Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(35.0),
-                                  gradient: LinearGradient(
+                                  gradient: const LinearGradient(
                                       begin: Alignment.topCenter,
                                       end: Alignment.bottomCenter,
                                       colors: [
-                                        const Color(0xff00796b),
-                                        const Color(0xff000000),
+                                        Color(0xff00796b),
+                                        Color(0xff000000),
                                       ])),
                               child: TextButton(
                                   onPressed: () {},
-                                  child: Text(
+                                  child: const Text(
                                     "التسجيل  كمريض",
                                     style: TextStyle(
                                       color: Colors.white,
@@ -66,35 +66,35 @@ class Scrn1 extends StatelessWidget {
                                       fontSize: 18.0,
                                     ),
                                   ))),
-                          SizedBox(
+                          const SizedBox(
                             height: 20.0,
                           ),
                           Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(35.0),
-                                  gradient: LinearGradient(
+                                  gradient: const LinearGradient(
                                       begin: Alignment.topCenter,
                                       end: Alignment.bottomCenter,
                                       colors: [
-                                        const Color(0xff00796b),
-                                        const Color(0xff000000)
+                                        Color(0xff00796b),
+                                        Color(0xff000000)
                                       ])),
                               child: TextButton(
                                   onPressed: () {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => Suc()));
+                                            builder: (context) => const Suc()));
                                   },
-                                  child: Text(
+                                  child: const Text(
                                     "التسجيل  كمختص",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18.0),
                                   ))),
-                          SizedBox(
+                          const SizedBox(
                             height: 20.0,
                           )
                         ],
@@ -109,7 +109,7 @@ class Scrn1 extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50.0,
                 ),
               ],
