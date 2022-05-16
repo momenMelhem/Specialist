@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'main_page.dart';
-
-class DownsSyndrome extends StatelessWidget {
-  const DownsSyndrome({Key? key}) : super(key: key);
+class VisualDisability extends StatelessWidget {
+  const VisualDisability({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +12,7 @@ class DownsSyndrome extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.teal[900],
           centerTitle: true,
-          title: Text('متلازمة داون'),
+          title: Text('إعاقة بصرية'),
         ),
         body: Container(
           height: double.infinity,
@@ -37,8 +36,7 @@ class DownsSyndrome extends StatelessWidget {
                         children: [
                           Container(
                             child: Text(
-                              'متلازمة داون هي حالة وراثية بسبب كروموسوم اضافي تؤثر على النمو'
-                              'العقلي للمصاب ونوفر مختصين مؤهلين لمساعدة المصاب على التعامل مع المجتمع المحيط بسهولة من خلال برامج تعليمية وتدريبية والعمل على تطوير القدرات ',
+                              'تؤفر فريقا من المتخصصين المؤهلين لتعليم لغة الإشارة لمن يعانون من الإعاقة السمعية لكي يستطيموا أن يتعاملوا مع المجتمع المحیط بهم',
                               textAlign: TextAlign.center,
                               textDirection: TextDirection.rtl,
                               style: TextStyle(

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:specialist/home_page_patient.dart';
+import 'package:specialist/requset_specialist.dart';
 import 'package:specialist/scrn1.dart';
+import 'package:specialist/signUpScrn.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +18,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scrn1(),
+      home:HomePatient(),
     );
   }
 }

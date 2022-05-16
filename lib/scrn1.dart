@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:specialist/regestration_patient.dart';
+import 'package:specialist/registratoin.dart';
 import 'package:specialist/signUpScrn.dart';
 
 class Scrn1 extends StatelessWidget {
@@ -57,7 +59,12 @@ class Scrn1 extends StatelessWidget {
                                         Color(0xff000000),
                                       ])),
                               child: TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                      builder: (context) => FormScreenPa ()));
+                                  },
                                   child: const Text(
                                     "التسجيل  كمريض",
                                     style: TextStyle(
@@ -85,7 +92,7 @@ class Scrn1 extends StatelessWidget {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => const Suc()));
+                                            builder: (context) =>  FormScreen ()));
                                   },
                                   child: const Text(
                                     "التسجيل  كمختص",

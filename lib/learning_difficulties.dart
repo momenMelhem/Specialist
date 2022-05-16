@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'main_page.dart';
+
 class LearningDifficulties extends StatelessWidget {
   const LearningDifficulties({Key? key}) : super(key: key);
 
@@ -35,7 +37,7 @@ class LearningDifficulties extends StatelessWidget {
                         children: [
                           Container(
                             child: Text(
-                              'نوفر فريقا من المختصين يعدون برامج تعليمية تساعد على تطوير نقاط الضعف للطفل وتنمية نقاط القوة للطفل وتنمية نقاط الضعف للطفل وتنمية نقاط قوته , وبالتالي التخلص من مشكلة صعوبة التعلم.',
+                              'نوفر فريقا من المتخصصين يعدون برامج تعليمية تساعد على تطوير نقاط الضعف للطفل وتنمية نقاط القوة للطفل وتنمية نقاط الضعف للطفل وتنمية نقاط قوته , وبالتالي التخلص من مشكلة صعوبة التعلم.',
                               textAlign: TextAlign.center,
                               textDirection: TextDirection.rtl,
                               style: TextStyle(
@@ -106,7 +108,34 @@ class LearningDifficulties extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text(
+                              'تم إرسال طلبك',
+                            ),
+                            content: Text('الرجاء الإنتظار لحين موافقه مختص'),
+                            actions: [
+                              TextButton(
+                                child: Text(
+                                  'موافق',
+                                  style: TextStyle(
+                                      fontSize: 12.0, color: Colors.blueAccent),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            MyStatefulWidget(),
+                                      ));
+                                },
+                              )
+                            ],
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),

@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'main_page.dart';
-
-class DownsSyndrome extends StatelessWidget {
-  const DownsSyndrome({Key? key}) : super(key: key);
+class Autism extends StatelessWidget {
+  const Autism({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +12,7 @@ class DownsSyndrome extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.teal[900],
           centerTitle: true,
-          title: Text('متلازمة داون'),
+          title: Text('إعاقة سمعية'),
         ),
         body: Container(
           height: double.infinity,
@@ -37,8 +36,7 @@ class DownsSyndrome extends StatelessWidget {
                         children: [
                           Container(
                             child: Text(
-                              'متلازمة داون هي حالة وراثية بسبب كروموسوم اضافي تؤثر على النمو'
-                              'العقلي للمصاب ونوفر مختصين مؤهلين لمساعدة المصاب على التعامل مع المجتمع المحيط بسهولة من خلال برامج تعليمية وتدريبية والعمل على تطوير القدرات ',
+                              'التوحد عبارة عن حالة ترتبط بنمو الدماغ وتؤثر على كيفية تمييز الشخص للأخريين والتعامل معهم على المستوى الاجتماعاي، مما يتسبب في حدوث مشكلات في التفاعل والتواصل الاجتماعي لذلك التعامل مع هذه الفئة امر صعب فينبغي أن يتدخل شخص مختص قادر على التعامل مع المصاب ويقدم له ما يحتاج من خلال برامج يعتمد على حالة المريض وبالتالي يصبح قادرا على التعامل مع المجتمع المحيط به ولاعتماد على الذات قدر الإمكان',
                               textAlign: TextAlign.center,
                               textDirection: TextDirection.rtl,
                               style: TextStyle(

@@ -1,13 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class FormScreen extends StatefulWidget {
+class FormScreenPa extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return FormScreenState();
   }
 }
 
-class FormScreenState extends State<FormScreen> {
+class FormScreenState extends State<FormScreenPa> {
   int _val = 1;
   String _firstName = '';
   String _lastName = '';
@@ -26,58 +27,58 @@ class FormScreenState extends State<FormScreen> {
   Widget _buildFirstName() {
     return
       TextFormField(
-      decoration: const InputDecoration(
-        labelText: 'الاسم الأول',
-        labelStyle: TextStyle(
-          fontSize: 12.0,
-        ),
+        decoration: const InputDecoration(
+          labelText: 'الاسم الأول',
+          labelStyle: TextStyle(
+            fontSize: 12.0,
+          ),
           prefixIcon: Icon(
             Icons.account_circle_outlined,
           ),
-        border: OutlineInputBorder(),
+          border: OutlineInputBorder(),
 
-      ),
-      maxLength: 10,
-      keyboardType: TextInputType.name,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'الاسم الاول مطلوب';
-        }
+        ),
+        maxLength: 10,
+        keyboardType: TextInputType.name,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'الاسم الاول مطلوب';
+          }
 
-        return null;
-      },
-      onSaved: (String? value) {
-        _firstName = value!;
-      },
-    );
+          return null;
+        },
+        onSaved: (String? value) {
+          _firstName = value!;
+        },
+      );
   }
 
   Widget _buildLastName() {
     return
       TextFormField(
-      keyboardType: TextInputType.name,
-      maxLength: 10,
-      decoration: const InputDecoration(
+        keyboardType: TextInputType.name,
+        maxLength: 10,
+        decoration: const InputDecoration(
           labelText: ' اسم العائلة ',
-      labelStyle: TextStyle(
-        fontSize: 12.0,
-      ),
-        prefixIcon: Icon(
-        Icons.account_circle_outlined,
-      ),
-        border: OutlineInputBorder(),
-      ),
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'اسم العائلة مطلوب';
-        }
+          labelStyle: TextStyle(
+            fontSize: 12.0,
+          ),
+          prefixIcon: Icon(
+            Icons.account_circle_outlined,
+          ),
+          border: OutlineInputBorder(),
+        ),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'اسم العائلة مطلوب';
+          }
 
-        return null;
-      },
-      onSaved: (value) {
-        _lastName = value!;
-      },
-    );
+          return null;
+        },
+        onSaved: (value) {
+          _lastName = value!;
+        },
+      );
   }
 
   Widget _buildEmail() {
@@ -85,13 +86,13 @@ class FormScreenState extends State<FormScreen> {
       keyboardType: TextInputType.emailAddress,
       decoration: const InputDecoration(
         labelText: 'البريد الإلتكروني',
-      labelStyle: TextStyle(
-        fontSize: 12.0,
-      ),
+        labelStyle: TextStyle(
+          fontSize: 12.0,
+        ),
         border: OutlineInputBorder(),
-          prefixIcon: Icon(
-        Icons.email_outlined,
-      ),
+        prefixIcon: Icon(
+          Icons.email_outlined,
+        ),
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
@@ -99,7 +100,7 @@ class FormScreenState extends State<FormScreen> {
         }
 
         if (!RegExp(
-                r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+            r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
             .hasMatch(value)) {
           return 'الرجاء إدخال بريد إلكتروني فعال';
         }
@@ -172,31 +173,28 @@ class FormScreenState extends State<FormScreen> {
   }
 
 
-  Widget _buildMajor() {   // 33333dddeeellllll
-    return TextFormField(
-      decoration: const InputDecoration(labelText: 'الاختصاص'),
-      keyboardType: TextInputType.text,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'الاختصاص';
-        }
-
-        return null;
-      },
-      onSaved: (value) {
-        _major = value!;
-      },
-    );
-  }
+  // Widget _buildMajor() {   // 33333dddeeellllll
+  //   return TextFormField(
+  //     decoration: const InputDecoration(labelText: 'الاختصاص'),
+  //     keyboardType: TextInputType.text,
+  //     validator: (value) {
+  //       if (value == null || value.isEmpty) {
+  //         return 'الاختصاص';
+  //       }
+  //
+  //       return null;
+  //     },
+  //     onSaved: (value) {
+  //       _major = value!;
+  //     },
+  //   );
+  // }
 
   Widget _buildBDate() {//تاريخ الميلاد
     return Container(
       child: Column(
         children: [
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: Colors.teal[900],
-            ),
+          TextButton(
             child: Text(
               'تاريخ الميلاد ',
               style: TextStyle(
@@ -292,7 +290,7 @@ class FormScreenState extends State<FormScreen> {
                   _buildEmail(),
                   _buildPassword(),
                   _buildPhoneNumber(),
-                  _buildMajor(),
+                  //_buildMajor(),
                   _buildBDate(),
                   _buildGender(),
                   const SizedBox(height: 30.0,),
