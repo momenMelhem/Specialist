@@ -1,14 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:specialist/dialogs/Dialogs.dart';
+import 'package:specialist/services/AuthServices.dart';
 
-class FormScreenPa extends StatefulWidget {
+class PatientRegistration extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return FormScreenState();
   }
 }
 
-class FormScreenState extends State<FormScreenPa> {
+class FormScreenState extends State<PatientRegistration> {
   int _val = 1;
   String _firstName = '';
   String _lastName = '';
@@ -16,69 +18,70 @@ class FormScreenState extends State<FormScreenPa> {
   String _password = '';
   String _phoneNumber = '';
   DateTime _bDate = DateTime(2022, 5, 11);
-  String _major = '';
-  String major='';
-  List listMajor=['إعاقه سمعيه', 'إعاقه بصريه', 'التوحد', 'متلازمه داون', 'صعوبات النطق','صعوبات التعلم','إعاقه جسديه'];
-
-
+  List listMajor = [
+    'إعاقه سمعيه',
+    'إعاقه بصريه',
+    'التوحد',
+    'متلازمه داون',
+    'صعوبات النطق',
+    'صعوبات التعلم',
+    'إعاقه جسديه'
+  ];
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildFirstName() {
-    return
-      TextFormField(
-        decoration: const InputDecoration(
-          labelText: 'الاسم الأول',
-          labelStyle: TextStyle(
-            fontSize: 12.0,
-          ),
-          prefixIcon: Icon(
-            Icons.account_circle_outlined,
-          ),
-          border: OutlineInputBorder(),
-
+    return TextFormField(
+      decoration: const InputDecoration(
+        labelText: 'الاسم الأول',
+        labelStyle: TextStyle(
+          fontSize: 12.0,
         ),
-        maxLength: 10,
-        keyboardType: TextInputType.name,
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'الاسم الاول مطلوب';
-          }
+        prefixIcon: Icon(
+          Icons.account_circle_outlined,
+        ),
+        border: OutlineInputBorder(),
+      ),
+      maxLength: 10,
+      keyboardType: TextInputType.name,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'الاسم الاول مطلوب';
+        }
 
-          return null;
-        },
-        onSaved: (String? value) {
-          _firstName = value!;
-        },
-      );
+        return null;
+      },
+      onSaved: (String? value) {
+        _firstName = value!;
+      },
+    );
   }
 
   Widget _buildLastName() {
-    return
-      TextFormField(
-        keyboardType: TextInputType.name,
-        maxLength: 10,
-        decoration: const InputDecoration(
-          labelText: ' اسم العائلة ',
-          labelStyle: TextStyle(
-            fontSize: 12.0,
-          ),
-          prefixIcon: Icon(
-            Icons.account_circle_outlined,
-          ),
-          border: OutlineInputBorder(),
+    return TextFormField(
+      keyboardType: TextInputType.name,
+      maxLength: 10,
+      decoration: const InputDecoration(
+        labelText: ' اسم العائلة ',
+        labelStyle: TextStyle(
+          fontSize: 12.0,
         ),
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'اسم العائلة مطلوب';
-          }
+        prefixIcon: Icon(
+          Icons.account_circle_outlined,
+        ),
+        border: OutlineInputBorder(),
+      ),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'اسم العائلة مطلوب';
+        }
 
-          return null;
-        },
-        onSaved: (value) {
-          _lastName = value!;
-        },
-      );
+        return null;
+      },
+      onSaved: (value) {
+        _lastName = value!;
+      },
+    );
   }
 
   Widget _buildEmail() {
@@ -100,7 +103,7 @@ class FormScreenState extends State<FormScreenPa> {
         }
 
         if (!RegExp(
-            r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+                r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
             .hasMatch(value)) {
           return 'الرجاء إدخال بريد إلكتروني فعال';
         }
@@ -152,9 +155,9 @@ class FormScreenState extends State<FormScreenPa> {
             fontSize: 12.0,
           ),
           border: OutlineInputBorder(),
-          prefixIcon:Icon(
+          prefixIcon: Icon(
             Icons.phone,
-          ) ,
+          ),
           labelText: 'رقم الهاتف',
         ),
         keyboardType: TextInputType.phone,
@@ -172,25 +175,8 @@ class FormScreenState extends State<FormScreenPa> {
     );
   }
 
-
-  // Widget _buildMajor() {   // 33333dddeeellllll
-  //   return TextFormField(
-  //     decoration: const InputDecoration(labelText: 'الاختصاص'),
-  //     keyboardType: TextInputType.text,
-  //     validator: (value) {
-  //       if (value == null || value.isEmpty) {
-  //         return 'الاختصاص';
-  //       }
-  //
-  //       return null;
-  //     },
-  //     onSaved: (value) {
-  //       _major = value!;
-  //     },
-  //   );
-  // }
-
-  Widget _buildBDate() {//تاريخ الميلاد
+  Widget _buildBDate() {
+    //تاريخ الميلاد
     return Container(
       child: Column(
         children: [
@@ -236,7 +222,9 @@ class FormScreenState extends State<FormScreenPa> {
                 }),
             Text(
               'انثى',
-              style: TextStyle(fontSize: 18.0,),
+              style: TextStyle(
+                fontSize: 18.0,
+              ),
             )
           ],
         ),
@@ -251,7 +239,9 @@ class FormScreenState extends State<FormScreenPa> {
                 }),
             Text(
               'ذكر',
-              style: TextStyle(fontSize: 18.0,),
+              style: TextStyle(
+                fontSize: 18.0,
+              ),
             )
           ],
         ),
@@ -293,7 +283,9 @@ class FormScreenState extends State<FormScreenPa> {
                   //_buildMajor(),
                   _buildBDate(),
                   _buildGender(),
-                  const SizedBox(height: 30.0,),
+                  const SizedBox(
+                    height: 30.0,
+                  ),
                   Container(
                     width: double.infinity,
                     child: ElevatedButton(
@@ -308,22 +300,35 @@ class FormScreenState extends State<FormScreenPa> {
                           fontSize: 16,
                         ),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (!_formKey.currentState!.validate()) {
                           return;
                         }
-
-                        _formKey.currentState!.save();
-
-                        print(_firstName);
-                        print(_lastName);
-                        print(_email);
-                        print(_phoneNumber);
-                        print(_password);
-                        print(_major);
-                        print(_bDate);
-
-                        //Send to API
+                        try {
+                          _formKey.currentState!.save();
+                          showDialog<void>(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (context) => WaitingDialog());
+                          bool isValid = await AuthServices.signUp(
+                              _firstName,
+                              _lastName,
+                              _email,
+                              _password,
+                              _phoneNumber,
+                              _bDate.toString(),
+                              _val == 1 ? "female" : "male",
+                              "patient",
+                              context);
+                          if (isValid) {
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          } else
+                            print("something wrong");
+                        } catch (e) {
+                          print(e);
+                        }
                       },
                     ),
                   )

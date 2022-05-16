@@ -1,22 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:specialist/appointments.dart';
-import 'package:specialist/registratoin.dart';
-import 'package:specialist/scrn1.dart';
+import 'package:specialist/SpecialistRegistration.dart';
+import 'package:specialist/UserTypePage.dart';
+import 'package:specialist/dialogs/Dialogs.dart';
+import 'package:specialist/services/AuthServices.dart';
 
-import 'main_page.dart';
+import 'PatientHomePage.dart';
 
-class Suc extends StatefulWidget {
-  const Suc({Key? key}) : super(key: key);
+class SignInPage extends StatefulWidget {
+  const SignInPage({Key? key}) : super(key: key);
 
   @override
-  State<Suc> createState() => _SucState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SucState extends State<Suc> {
+class _SignInPageState extends State<SignInPage> {
   bool _passwordVisible = true;
-  var emailController= TextEditingController();
-  var passwordController= TextEditingController();
+  String _email = "", _password = "";
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,6 @@ class _SucState extends State<Suc> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-
                   Padding(
                     padding: const EdgeInsets.only(
                         right: 45.0, left: 45.0, bottom: 40.0, top: 10.0),
@@ -69,31 +69,30 @@ class _SucState extends State<Suc> {
                                 height: 50.0,
                               ),
                               TextFormField(
-                                controller: emailController,
-                                // controller: emailController,
+                                onChanged: (val) {
+                                  _email = val;
+                                },
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
-                                    prefixIcon:Icon(
-                                      Icons.email_outlined
-                                    ),
-                                    labelText: 'البريد الإلكتروني',
-                                    labelStyle: TextStyle(
-                                      fontSize: 12.0,
-                                      color: Colors.grey[900],
-                                      //fontWeight: FontWeight.bold,
-                                    ),
+                                  prefixIcon: Icon(Icons.email_outlined),
+                                  labelText: 'البريد الإلكتروني',
+                                  labelStyle: TextStyle(
+                                    fontSize: 12.0,
+                                    color: Colors.grey[900],
+                                    //fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-
-                                    keyboardType:TextInputType.emailAddress,
-
+                                keyboardType: TextInputType.emailAddress,
                               ),
                               SizedBox(
                                 height: 15.0,
                               ),
                               TextFormField(
-                                controller: passwordController,
+                                onChanged: (val) {
+                                  _password = val;
+                                },
                                 keyboardType: TextInputType.visiblePassword,
-                                obscureText:true,
+                                obscureText: true,
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.lock,
@@ -101,8 +100,8 @@ class _SucState extends State<Suc> {
                                   labelText: 'كلمة السر',
                                   border: OutlineInputBorder(),
                                   labelStyle: TextStyle(
-                                      fontSize: 12.0,
-                                      color: Colors.grey[900],
+                                    fontSize: 12.0,
+                                    color: Colors.grey[900],
                                   ),
                                   suffixIcon: IconButton(
                                     icon: Icon(
@@ -121,29 +120,51 @@ class _SucState extends State<Suc> {
                                 height: 30.0,
                               ),
                               Container(
-
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                      gradient: LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                          colors: [
-                                            const Color(0xff004d40),
-                                            const Color(0xff00897b),
-                                          ],
-                                      ),
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [
+                                        const Color(0xff004d40),
+                                        const Color(0xff00897b),
+                                      ],
+                                    ),
                                   ),
                                   child: Container(
                                     width: double.infinity,
                                     child: MaterialButton(
+                                      onPressed: () async {
+                                        showDialog<void>(
+                                            context: context,
+                                            barrierDismissible: false,
+                                            builder: (context) =>
+                                                WaitingDialog());
+                                        bool isValid =
+                                            await AuthServices.signIn(
+                                                _email, _password);
 
-                                      onPressed: () {
-                                        Navigator.push(
+                                        if (isValid) {
+                                          Navigator.pop(context);
+                                          Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  MyStatefulWidget(),
-                                            ));
+                                                  PatientHomePage(),
+                                            ),
+                                          );
+                                        } else {
+                                          Navigator.pop(context);
+                                          showDialog<void>(
+                                            context: context,
+                                            barrierDismissible: false,
+                                            builder: (context) => ErrorDialog(
+                                              title: 'Wrong Input',
+                                              text:
+                                                  'This email or password is wrong.\nPlease try again.',
+                                            ),
+                                          );
+                                        }
                                       },
                                       child: Text(
                                         "تسجيل الدخول ",
@@ -166,11 +187,12 @@ class _SucState extends State<Suc> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => Scrn1(),
+                                            builder: (context) =>
+                                                UserTypePage(),
                                           ));
                                     },
                                     child: Text(
-                                        'إنشاء حساب',
+                                      'إنشاء حساب',
                                       style: TextStyle(
                                           color: Colors.blueAccent,
                                           // fontWeight: FontWeight.bold,
@@ -179,7 +201,6 @@ class _SucState extends State<Suc> {
                                   ),
                                   SizedBox(
                                     width: 10.0,
-
                                   ),
                                   Text(
                                     'ليس لديك حساب ؟',

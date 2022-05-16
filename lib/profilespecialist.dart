@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:specialist/signUpScrn.dart';
+import 'package:specialist/SignInPage.dart';
 
 class ProfileSpecialist extends StatelessWidget {
   const ProfileSpecialist({Key? key}) : super(key: key);
@@ -145,7 +145,7 @@ class ProfileSpecialist extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Suc(),
+                        builder: (context) => SignInPage(),
                       ));
                 },
                 child: Row(

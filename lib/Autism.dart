@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'main_page.dart';
+import 'PatientHomePage.dart';
+
 class Autism extends StatelessWidget {
   const Autism({Key? key}) : super(key: key);
 
@@ -129,8 +130,7 @@ class Autism extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) =>
-                                            MyStatefulWidget(),
+                                        builder: (context) => PatientHomePage(),
                                       ));
                                 },
                               )

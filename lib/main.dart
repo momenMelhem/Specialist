@@ -1,10 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:specialist/home_page_patient.dart';
 import 'package:specialist/requset_specialist.dart';
-import 'package:specialist/scrn1.dart';
-import 'package:specialist/signUpScrn.dart';
+import 'package:specialist/UserTypePage.dart';
+import 'package:specialist/SignInPage.dart';
 
-void main() {
+import 'Reprot.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -18,7 +23,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:HomePatient(),
+      home: SignInPage(),
     );
   }
 }

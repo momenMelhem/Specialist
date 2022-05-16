@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:specialist/patient-record.dart';
+import 'package:specialist/PatientsRecords.dart';
 import 'package:specialist/view-record.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,10 +29,8 @@ class _HomePageState extends State<HomePage> {
                 height: 100,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PatientRecords()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ViewRecord()));
                   },
                   child: Center(
                       child: Text(
@@ -59,8 +57,10 @@ class _HomePageState extends State<HomePage> {
                 height: 100,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ViewRecord()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PatientsRecords()));
                   },
                   child: Center(
                       child: Text(

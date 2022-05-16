@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:specialist/home-page.dart';
 
-import 'main_page.dart';
+import 'PatientHomePage.dart';
 
 class PhysicalDisability extends StatelessWidget {
   const PhysicalDisability({Key? key}) : super(key: key);
@@ -126,14 +126,15 @@ class PhysicalDisability extends StatelessWidget {
                                   child: Text(
                                     'موافق',
                                     style: TextStyle(
-                                        fontSize: 12.0, color: Colors.blueAccent),
+                                        fontSize: 12.0,
+                                        color: Colors.blueAccent),
                                   ),
                                   onPressed: () {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              MyStatefulWidget(),
+                                              PatientHomePage(),
                                         ));
                                   },
                                 )

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class FormScreen extends StatefulWidget {
+class SpecialistRegistration extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return FormScreenState();
+    return SpecialistRegistrationState();
   }
 }
 
-class FormScreenState extends State<FormScreen> {
+class SpecialistRegistrationState extends State<SpecialistRegistration> {
   int _val = 1;
   String _firstName = '';
   String _lastName = '';
@@ -16,26 +16,30 @@ class FormScreenState extends State<FormScreen> {
   String _phoneNumber = '';
   DateTime _bDate = DateTime(2022, 5, 11);
   String _major = '';
-  String major='';
-  List listMajor=['إعاقه سمعيه', 'إعاقه بصريه', 'التوحد', 'متلازمه داون', 'صعوبات النطق','صعوبات التعلم','إعاقه جسديه'];
-
-
+  String major = '';
+  List listMajor = [
+    'إعاقه سمعيه',
+    'إعاقه بصريه',
+    'التوحد',
+    'متلازمه داون',
+    'صعوبات النطق',
+    'صعوبات التعلم',
+    'إعاقه جسديه'
+  ];
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildFirstName() {
-    return
-      TextFormField(
+    return TextFormField(
       decoration: const InputDecoration(
         labelText: 'الاسم الأول',
         labelStyle: TextStyle(
           fontSize: 12.0,
         ),
-          prefixIcon: Icon(
-            Icons.account_circle_outlined,
-          ),
+        prefixIcon: Icon(
+          Icons.account_circle_outlined,
+        ),
         border: OutlineInputBorder(),
-
       ),
       maxLength: 10,
       keyboardType: TextInputType.name,
@@ -53,18 +57,17 @@ class FormScreenState extends State<FormScreen> {
   }
 
   Widget _buildLastName() {
-    return
-      TextFormField(
+    return TextFormField(
       keyboardType: TextInputType.name,
       maxLength: 10,
       decoration: const InputDecoration(
-          labelText: ' اسم العائلة ',
-      labelStyle: TextStyle(
-        fontSize: 12.0,
-      ),
+        labelText: ' اسم العائلة ',
+        labelStyle: TextStyle(
+          fontSize: 12.0,
+        ),
         prefixIcon: Icon(
-        Icons.account_circle_outlined,
-      ),
+          Icons.account_circle_outlined,
+        ),
         border: OutlineInputBorder(),
       ),
       validator: (value) {
@@ -85,13 +88,13 @@ class FormScreenState extends State<FormScreen> {
       keyboardType: TextInputType.emailAddress,
       decoration: const InputDecoration(
         labelText: 'البريد الإلتكروني',
-      labelStyle: TextStyle(
-        fontSize: 12.0,
-      ),
+        labelStyle: TextStyle(
+          fontSize: 12.0,
+        ),
         border: OutlineInputBorder(),
-          prefixIcon: Icon(
-        Icons.email_outlined,
-      ),
+        prefixIcon: Icon(
+          Icons.email_outlined,
+        ),
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
@@ -151,9 +154,9 @@ class FormScreenState extends State<FormScreen> {
             fontSize: 12.0,
           ),
           border: OutlineInputBorder(),
-          prefixIcon:Icon(
+          prefixIcon: Icon(
             Icons.phone,
-          ) ,
+          ),
           labelText: 'رقم الهاتف',
         ),
         keyboardType: TextInputType.phone,
@@ -171,8 +174,8 @@ class FormScreenState extends State<FormScreen> {
     );
   }
 
-
-  Widget _buildMajor() {   // 33333dddeeellllll
+  Widget _buildMajor() {
+    // 33333dddeeellllll
     return TextFormField(
       decoration: const InputDecoration(labelText: 'الاختصاص'),
       keyboardType: TextInputType.text,
@@ -189,7 +192,8 @@ class FormScreenState extends State<FormScreen> {
     );
   }
 
-  Widget _buildBDate() {//تاريخ الميلاد
+  Widget _buildBDate() {
+    //تاريخ الميلاد
     return Container(
       child: Column(
         children: [
@@ -238,7 +242,9 @@ class FormScreenState extends State<FormScreen> {
                 }),
             Text(
               'انثى',
-              style: TextStyle(fontSize: 18.0,),
+              style: TextStyle(
+                fontSize: 18.0,
+              ),
             )
           ],
         ),
@@ -253,7 +259,9 @@ class FormScreenState extends State<FormScreen> {
                 }),
             Text(
               'ذكر',
-              style: TextStyle(fontSize: 18.0,),
+              style: TextStyle(
+                fontSize: 18.0,
+              ),
             )
           ],
         ),
@@ -295,7 +303,9 @@ class FormScreenState extends State<FormScreen> {
                   _buildMajor(),
                   _buildBDate(),
                   _buildGender(),
-                  const SizedBox(height: 30.0,),
+                  const SizedBox(
+                    height: 30.0,
+                  ),
                   Container(
                     width: double.infinity,
                     child: ElevatedButton(

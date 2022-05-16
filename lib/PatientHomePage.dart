@@ -3,14 +3,14 @@ import 'package:specialist/profilespecialist.dart';
 import 'appointments.dart';
 import 'home-page.dart';
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
+class PatientHomePage extends StatefulWidget {
+  const PatientHomePage({Key? key}) : super(key: key);
 
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+  State<PatientHomePage> createState() => _PatientHomePageState();
 }
 
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class _PatientHomePageState extends State<PatientHomePage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);

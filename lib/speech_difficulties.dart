@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'main_page.dart';
+import 'PatientHomePage.dart';
 
 class SpeechDifficlties extends StatelessWidget {
   const SpeechDifficlties({Key? key}) : super(key: key);
@@ -130,8 +130,7 @@ class SpeechDifficlties extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) =>
-                                            MyStatefulWidget(),
+                                        builder: (context) => PatientHomePage(),
                                       ));
                                 },
                               )
