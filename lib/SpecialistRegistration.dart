@@ -359,7 +359,6 @@ class SpecialistRegistrationState extends State<SpecialistRegistration> {
                         if (!_formKey.currentState!.validate()) {
                           return;
                         }
-
                         _formKey.currentState!.save();
 
                         print(_firstName);

@@ -4,7 +4,7 @@ import 'package:specialist/dialogs/Dialogs.dart';
 
 class AuthServices {
   static final _auth = FirebaseAuth.instance;
-
+//todo sign up for spec
   static Future<bool> signUp(
       String firstName,
       String secondName,
