@@ -15,8 +15,7 @@ class SpecialistRegistrationState extends State<SpecialistRegistration> {
   String _password = '';
   String _phoneNumber = '';
   DateTime _bDate = DateTime(2022, 5, 11);
-  String _major = '';
-  String major = '';
+  var _major;
   List listMajor = [
     'إعاقه سمعيه',
     'إعاقه بصريه',
@@ -175,20 +174,56 @@ class SpecialistRegistrationState extends State<SpecialistRegistration> {
   }
 
   Widget _buildMajor() {
-    // 33333dddeeellllll
-    return TextFormField(
-      decoration: const InputDecoration(labelText: 'الاختصاص'),
-      keyboardType: TextInputType.text,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'الاختصاص';
-        }
-
-        return null;
-      },
-      onSaved: (value) {
-        _major = value!;
-      },
+    return Padding(
+      padding: const EdgeInsets.only(top: 16.0),
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.teal.shade50, border: Border.all(color: Colors.grey)),
+        height: 60,
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 45, right: 28),
+            child: DropdownButton(
+              underline: Container(
+                height: 0,
+              ),
+              icon: Icon(Icons.keyboard_arrow_down),
+              iconSize: 30,
+              style: TextStyle(
+                color: Colors.grey.shade700,
+                fontSize: 22,
+              ),
+              isExpanded: true,
+              menuMaxHeight: 200,
+              dropdownColor: Colors.teal.shade50,
+              iconEnabledColor: Colors.grey,
+              hint: Text(
+                'الاختصاص',
+                style: TextStyle(color: Colors.grey.shade700, fontSize: 16),
+              ),
+              items: [
+                'إعاقه سمعيه',
+                'إعاقه بصريه',
+                'التوحد',
+                'متلازمه داون',
+                'صعوبات النطق',
+                'صعوبات التعلم',
+                'إعاقه جسديه'
+              ]
+                  .map((String item) =>
+                      DropdownMenuItem<String>(child: Text(item), value: item))
+                  .toList(),
+              onChanged: (val) {
+                setState(() {
+                  _major = val;
+                  _major = val.toString();
+                });
+              },
+              value: _major,
+            ),
+          ),
+        ),
+      ),
     );
   }
 
