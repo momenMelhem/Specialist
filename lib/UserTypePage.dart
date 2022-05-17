@@ -4,14 +4,16 @@ import 'package:specialist/PatientRegistration.dart';
 import 'package:specialist/SpecialistRegistration.dart';
 import 'package:specialist/SignInPage.dart';
 
+import 'home_page_patient.dart';
+
 class UserTypePage extends StatelessWidget {
   const UserTypePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(
@@ -60,8 +62,7 @@ class UserTypePage extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          PatientRegistration()));
+                                      builder: (context) => HomePatient()));
                             },
                             child: const Text(
                               "التسجيل  كمريض",

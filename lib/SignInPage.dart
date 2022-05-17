@@ -24,7 +24,7 @@ class _SignInPageState extends State<SignInPage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back),
+        backgroundColor: Colors.teal[900],
       ),
       body: SafeArea(
         child: Container(

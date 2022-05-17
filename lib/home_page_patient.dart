@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:specialist/page/dash_board.dart';
 import 'package:specialist/page/profile.dart';
 import 'package:specialist/page/search.dart';
+import 'package:specialist/page/showReports.dart';
 import 'package:specialist/requset_specialist.dart';
 
 class HomePatient extends StatefulWidget {
@@ -28,12 +29,15 @@ class _HomePatientState extends State<HomePatient> {
         child: currentScreen,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  RequestSpe(),
-            ));},
+        backgroundColor: Colors.teal[900],
+        splashColor: Colors.black,
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => RequestSpe(),
+              ));
+        },
         child: Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -60,7 +64,7 @@ class _HomePatientState extends State<HomePatient> {
                       children: [
                         Icon(
                           Icons.dashboard,
-                          color: currentTab == 0 ? Colors.blue : Colors.grey,
+                          color: currentTab == 0 ? Colors.black : Colors.grey,
                         ),
                         Text(
                           'الرئيسية',
@@ -83,7 +87,7 @@ class _HomePatientState extends State<HomePatient> {
                       children: [
                         Icon(
                           Icons.search,
-                          color: currentTab == 1 ? Colors.blue : Colors.grey,
+                          color: currentTab == 1 ? Colors.black : Colors.grey,
                         ),
                         Text(
                           'بحث',
@@ -102,28 +106,28 @@ class _HomePatientState extends State<HomePatient> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   MaterialButton(
-                  onPressed: () {
-                    setState(() {
-                      currentScreen = Search();
-                      currentTab = 2;
-                    });
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.receipt,
-                        color: currentTab == 2 ? Colors.blue : Colors.grey,
-                      ),
-                      Text(
-                        'التقارير',
-                        style: TextStyle(
-                          color: currentTab == 2 ? Colors.blue : Colors.grey,
+                    onPressed: () {
+                      setState(() {
+                        currentScreen = ShowReports();
+                        currentTab = 2;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.receipt,
+                          color: currentTab == 2 ? Colors.black : Colors.grey,
                         ),
-                      ),
-                    ],
+                        Text(
+                          'التقارير',
+                          style: TextStyle(
+                            color: currentTab == 2 ? Colors.blue : Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
                   MaterialButton(
                     onPressed: () {
                       setState(() {
@@ -136,7 +140,7 @@ class _HomePatientState extends State<HomePatient> {
                       children: [
                         Icon(
                           Icons.account_circle,
-                          color: currentTab == 3 ? Colors.blue : Colors.grey,
+                          color: currentTab == 3 ? Colors.black : Colors.grey,
                         ),
                         Text(
                           'الملف',
@@ -147,7 +151,6 @@ class _HomePatientState extends State<HomePatient> {
                       ],
                     ),
                   ),
-
                 ],
               ),
             ],

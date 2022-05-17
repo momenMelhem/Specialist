@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+class ShowReports extends StatefulWidget {
+  const ShowReports({Key? key}) : super(key: key);
 
   @override
-  State<Profile> createState() => _ProfileState();
+  State<ShowReports> createState() => _ShowReportsState();
 }
 
-class _ProfileState extends State<Profile> {
+class _ShowReportsState extends State<ShowReports> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -15,8 +15,8 @@ class _ProfileState extends State<Profile> {
         appBar: AppBar(
           backgroundColor: Colors.teal[900],
           title: Text(
-            'الملف الشخصي',
-            style: TextStyle(fontSize: 18.0, color: Colors.white),
+            'التقارير',
+            style: TextStyle(fontSize: 16.0, color: Colors.white),
           ),
         ),
         body: Container(
