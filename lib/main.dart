@@ -5,8 +5,6 @@ import 'package:specialist/requset_specialist.dart';
 import 'package:specialist/UserTypePage.dart';
 import 'package:specialist/SignInPage.dart';
 
-import 'Reprot.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

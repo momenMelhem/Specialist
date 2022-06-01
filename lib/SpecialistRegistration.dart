@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:specialist/dialogs/Dialogs.dart';
+import 'package:specialist/services/AuthServices.dart';
 
 class SpecialistRegistration extends StatefulWidget {
   @override
@@ -17,13 +19,13 @@ class SpecialistRegistrationState extends State<SpecialistRegistration> {
   DateTime _bDate = DateTime(2022, 5, 11);
   var _major;
   List listMajor = [
-    'إعاقه سمعيه',
-    'إعاقه بصريه',
+    'إعاقة سمعية',
+    'إعاقة بصرية',
     'التوحد',
-    'متلازمه داون',
+    'متلازمة داون',
     'صعوبات النطق',
     'صعوبات التعلم',
-    'إعاقه جسديه'
+    'إعاقة جسدية'
   ];
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -202,13 +204,13 @@ class SpecialistRegistrationState extends State<SpecialistRegistration> {
                 style: TextStyle(color: Colors.grey.shade700, fontSize: 16),
               ),
               items: [
-                'إعاقه سمعيه',
-                'إعاقه بصريه',
+                'إعاقه سمعية',
+                'إعاقه بصرية',
                 'التوحد',
                 'متلازمه داون',
                 'صعوبات النطق',
                 'صعوبات التعلم',
-                'إعاقه جسديه'
+                'إعاقه جسدية'
               ]
                   .map((String item) =>
                       DropdownMenuItem<String>(child: Text(item), value: item))
@@ -355,20 +357,36 @@ class SpecialistRegistrationState extends State<SpecialistRegistration> {
                           fontSize: 16,
                         ),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (!_formKey.currentState!.validate()) {
                           return;
                         }
-                        _formKey.currentState!.save();
-
-                        print(_firstName);
-                        print(_lastName);
-                        print(_email);
-                        print(_phoneNumber);
-                        print(_password);
-                        print(_major);
-                        print(_bDate);
-
+                        try {
+                          _formKey.currentState!.save();
+                          showDialog<void>(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (context) => WaitingDialog());
+                          bool isValid = await AuthServices.signUp(
+                              _firstName,
+                              _lastName,
+                              _email,
+                              _password,
+                              _phoneNumber,
+                              _major,
+                              _bDate.toString().split(" ")[0],
+                              _val == 1 ? "female" : "male",
+                              'specialist',
+                              context);
+                          if (isValid) {
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          } else
+                            print("something wrong");
+                        } catch (e) {
+                          print(e);
+                        }
                         //Send to API
                       },
                     ),

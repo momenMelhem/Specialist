@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'PatientHomePage.dart';
+import 'package:specialist/services/AddAppointmentServices.dart';
+import 'package:specialist/services/AuthServices.dart';
+import '../specialistHomePage.dart';
+import '../home_page_patient.dart';
 
 class Autism extends StatelessWidget {
   const Autism({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -13,7 +14,7 @@ class Autism extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.teal[900],
           centerTitle: true,
-          title: Text('إعاقة سمعية'),
+          title: const Text('التوحد'),
         ),
         body: Container(
           height: double.infinity,
@@ -36,7 +37,7 @@ class Autism extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            child: Text(
+                            child: const Text(
                               'التوحد عبارة عن حالة ترتبط بنمو الدماغ وتؤثر على كيفية تمييز الشخص للأخريين والتعامل معهم على المستوى الاجتماعاي، مما يتسبب في حدوث مشكلات في التفاعل والتواصل الاجتماعي لذلك التعامل مع هذه الفئة امر صعب فينبغي أن يتدخل شخص مختص قادر على التعامل مع المصاب ويقدم له ما يحتاج من خلال برامج يعتمد على حالة المريض وبالتالي يصبح قادرا على التعامل مع المجتمع المحيط به ولاعتماد على الذات قدر الإمكان',
                               textAlign: TextAlign.center,
                               textDirection: TextDirection.rtl,
@@ -48,7 +49,7 @@ class Autism extends StatelessWidget {
                             ),
                             color: Colors.white,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30.0,
                           ),
                           Container(
@@ -104,39 +105,46 @@ class Autism extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     child: MaterialButton(
-                      child: Text(
+                      child: const Text(
                         'طلب خدمة',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: Text(
-                              'تم إرسال طلبك',
+                      onPressed: () async {
+                        bool successfullySent =
+                            await AddAppointmentServices.addAppointment(
+                                AuthServices.signedInUser.ID, 'توحد');
+                        if (successfullySent)
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text(
+                                'تم إرسال طلبك',
+                              ),
+                              content: const Text(
+                                  'الرجاء الإنتظار لحين موافقه مختص'),
+                              actions: [
+                                TextButton(
+                                  child: const Text(
+                                    'موافق',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Colors.blueAccent),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const HomePatient(),
+                                        ));
+                                  },
+                                )
+                              ],
                             ),
-                            content: Text('الرجاء الإنتظار لحين موافقه مختص'),
-                            actions: [
-                              TextButton(
-                                child: Text(
-                                  'موافق',
-                                  style: TextStyle(
-                                      fontSize: 12.0, color: Colors.blueAccent),
-                                ),
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => PatientHomePage(),
-                                      ));
-                                },
-                              )
-                            ],
-                          ),
-                        );
+                          );
                       },
                     ),
                   ),

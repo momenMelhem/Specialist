@@ -32,9 +32,20 @@ dependencies:
   firebase_core: ^1.15.0
   firebase_auth: ^3.3.16
   cloud_firestore: ^3.1.13
+  firebase_storage: ^10.2.16
+
+  uuid: ^2.2.2
+  path_provider: ^2.0.10
+  flutter_image_compress: ^1.1.0
+
+  image_picker: ^0.8.5+3
+
   flutter_clean_calendar: ^1.1.0
   timetable: ^0.2.9
   toggle_switch: ^2.0.1
+  datetime_picker_formfield: ^2.0.0
+  flutter_svg: ^1.0.3
+  intl: ^0.17.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -70,6 +81,8 @@ flutter:
   assets:
     - packages/time_machine/data/cultures/cultures.bin
     - packages/time_machine/data/tzdb/tzdb.bin
+    - assets/images/
+    - assets/Svg/doctorwhitecoat.svg
   fonts:
     - family: Pacifico
       fonts:

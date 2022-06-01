@@ -316,9 +316,10 @@ class FormScreenState extends State<PatientRegistration> {
                               _email,
                               _password,
                               _phoneNumber,
-                              _bDate.toString(),
+                              '',
+                              _bDate.toString().split(" ")[0],
                               _val == 1 ? "female" : "male",
-                              "patient",
+                              'patient',
                               context);
                           if (isValid) {
                             Navigator.pop(context);

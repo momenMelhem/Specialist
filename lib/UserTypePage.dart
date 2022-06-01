@@ -62,7 +62,8 @@ class UserTypePage extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => HomePatient()));
+                                      builder: (context) =>
+                                          PatientRegistration()));
                             },
                             child: const Text(
                               "التسجيل  كمريض",

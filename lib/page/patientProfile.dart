@@ -4,8 +4,8 @@ import 'package:specialist/SignInPage.dart';
 import 'package:specialist/editProfile.dart';
 import 'package:specialist/services/AuthServices.dart';
 
-class ProfileSpecialist extends StatelessWidget {
-  const ProfileSpecialist({Key? key}) : super(key: key);
+class PatientProfile extends StatelessWidget {
+  const PatientProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,22 +39,12 @@ class ProfileSpecialist extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Text(
-              AuthServices.signedInUser.major,
-              style: TextStyle(
-                fontFamily: 'Source Sans Pro',
-                color: Colors.teal.shade100,
-                fontSize: 25.0,
-                letterSpacing: 2.5,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(
-              height: 20.0,
-              width: 150.0,
-              child: Divider(
-                color: Colors.teal.shade100,
-              ),
+            Divider(
+              color: Colors.teal[200],
+              height: 10.0,
+              endIndent: 55.0,
+              indent: 55.0,
+              thickness: 1.0,
             ),
             Card(
                 margin: const EdgeInsets.symmetric(
@@ -100,8 +90,8 @@ class ProfileSpecialist extends StatelessWidget {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      Color(0xff009688),
-                      Color(0xff004d40),
+                      Color(0xff00796b),
+                      Color(0xff000000),
                     ]),
                 borderRadius: BorderRadius.circular(16.0),
               ),
@@ -139,8 +129,8 @@ class ProfileSpecialist extends StatelessWidget {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      Color(0xff009688),
-                      Color(0xff004d40),
+                      Color(0xff00796b),
+                      Color(0xff000000),
                     ]),
                 borderRadius: BorderRadius.circular(16.0),
               ),

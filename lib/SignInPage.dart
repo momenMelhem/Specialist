@@ -1,12 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:specialist/appointments.dart';
-import 'package:specialist/SpecialistRegistration.dart';
 import 'package:specialist/UserTypePage.dart';
 import 'package:specialist/dialogs/Dialogs.dart';
+import 'package:specialist/home_page_patient.dart';
 import 'package:specialist/services/AuthServices.dart';
 
-import 'PatientHomePage.dart';
+import 'specialistHomePage.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -16,24 +14,21 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  bool _passwordVisible = true;
+  bool _passwordVisible = false;
   String _email = "", _password = "";
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      appBar: AppBar(
-        backgroundColor: Colors.teal[900],
-      ),
-      body: SafeArea(
-        child: Container(
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: true,
+        body: Container(
           width: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [const Color(0xff00897b), const Color(0xff80cbc4)])),
+                  colors: [Color(0xff00897b), Color(0xff80cbc4)])),
           child: Center(
             child: SingleChildScrollView(
               child: Column(
@@ -54,8 +49,8 @@ class _SignInPageState extends State<SignInPage> {
                         child: SingleChildScrollView(
                           child: Column(
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 50.0),
+                              const Padding(
+                                padding: EdgeInsets.only(top: 50.0),
                                 child: Text(
                                   "Special",
                                   style: TextStyle(
@@ -65,7 +60,7 @@ class _SignInPageState extends State<SignInPage> {
                                       color: Colors.black),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 50.0,
                               ),
                               TextFormField(
@@ -73,8 +68,8 @@ class _SignInPageState extends State<SignInPage> {
                                   _email = val;
                                 },
                                 decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  prefixIcon: Icon(Icons.email_outlined),
+                                  border: const OutlineInputBorder(),
+                                  prefixIcon: const Icon(Icons.email_outlined),
                                   labelText: 'البريد الإلكتروني',
                                   labelStyle: TextStyle(
                                     fontSize: 12.0,
@@ -84,7 +79,7 @@ class _SignInPageState extends State<SignInPage> {
                                 ),
                                 keyboardType: TextInputType.emailAddress,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15.0,
                               ),
                               TextFormField(
@@ -92,46 +87,46 @@ class _SignInPageState extends State<SignInPage> {
                                   _password = val;
                                 },
                                 keyboardType: TextInputType.visiblePassword,
-                                obscureText: true,
+                                obscureText: !_passwordVisible,
                                 decoration: InputDecoration(
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.lock,
                                   ),
                                   labelText: 'كلمة السر',
-                                  border: OutlineInputBorder(),
+                                  border: const OutlineInputBorder(),
                                   labelStyle: TextStyle(
                                     fontSize: 12.0,
                                     color: Colors.grey[900],
                                   ),
                                   suffixIcon: IconButton(
+                                    onPressed: () {
+                                      _togglePasswordView();
+                                    },
                                     icon: Icon(
                                       _passwordVisible
                                           ? Icons.visibility
                                           : Icons.visibility_off,
                                       color: Colors.grey[900],
                                     ),
-                                    onPressed: () {
-                                      _togglePasswordView();
-                                    },
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 30.0,
                               ),
                               Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5.0),
-                                    gradient: LinearGradient(
+                                    gradient: const LinearGradient(
                                       begin: Alignment.topCenter,
                                       end: Alignment.bottomCenter,
                                       colors: [
-                                        const Color(0xff004d40),
-                                        const Color(0xff00897b),
+                                        Color(0xff004d40),
+                                        Color(0xff00897b),
                                       ],
                                     ),
                                   ),
-                                  child: Container(
+                                  child: SizedBox(
                                     width: double.infinity,
                                     child: MaterialButton(
                                       onPressed: () async {
@@ -143,15 +138,16 @@ class _SignInPageState extends State<SignInPage> {
                                         bool isValid =
                                             await AuthServices.signIn(
                                                 _email, _password);
-
                                         if (isValid) {
                                           Navigator.pop(context);
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) =>
-                                                  //todo navigate to the right page
-                                                  PatientHomePage(),
+                                              builder: (context) => AuthServices
+                                                          .signedInUser.type ==
+                                                      "patient"
+                                                  ? const HomePatient()
+                                                  : const SpecialistHomePage(),
                                             ),
                                           );
                                         } else {
@@ -167,7 +163,7 @@ class _SignInPageState extends State<SignInPage> {
                                           );
                                         }
                                       },
-                                      child: Text(
+                                      child: const Text(
                                         "تسجيل الدخول ",
                                         style: TextStyle(
                                             color: Colors.white,
@@ -176,12 +172,12 @@ class _SignInPageState extends State<SignInPage> {
                                       ),
                                     ),
                                   )),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20.0,
                               ),
                               Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   TextButton(
                                     onPressed: () {
@@ -189,21 +185,22 @@ class _SignInPageState extends State<SignInPage> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                UserTypePage(),
+                                                const UserTypePage(),
                                           ));
                                     },
                                     child: Text(
                                       'إنشاء حساب',
                                       style: TextStyle(
-                                          color: Colors.blueAccent,
-                                          // fontWeight: FontWeight.bold,
-                                          fontSize: 15.0),
+                                        color: Colors.teal[900],
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15.0,
+                                      ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10.0,
                                   ),
-                                  Text(
+                                  const Text(
                                     'ليس لديك حساب ؟',
                                     style: TextStyle(
                                         // fontWeight: FontWeight.bold,

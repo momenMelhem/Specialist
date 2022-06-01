@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:specialist/home-page.dart';
 
-import 'PatientHomePage.dart';
+import '../services/AddAppointmentServices.dart';
+import '../services/AuthServices.dart';
+import '../specialistHomePage.dart';
+import '../home_page_patient.dart';
 
 class PhysicalDisability extends StatelessWidget {
   const PhysicalDisability({Key? key}) : super(key: key);
@@ -15,7 +18,7 @@ class PhysicalDisability extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Colors.teal[900],
             centerTitle: true,
-            title: Text('إعاقة جسديه'),
+            title: const Text('إعاقة جسديه'),
           ),
           body: Container(
             height: double.infinity,
@@ -38,7 +41,7 @@ class PhysicalDisability extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              child: Text(
+                              child: const Text(
                                 'نوفر فريقا من المختصين الذين يقدمون برامج علاجية وتمارين خاصة تناسب حالة المريض وذلك لأن الإعاقة الجسدية لها عدة اسباب فالعلاج يعتمد على سبب المرض.',
                                 textAlign: TextAlign.center,
                                 textDirection: TextDirection.rtl,
@@ -50,7 +53,7 @@ class PhysicalDisability extends StatelessWidget {
                               ),
                               color: Colors.white,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 30.0,
                             ),
                             Container(
@@ -106,41 +109,47 @@ class PhysicalDisability extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       child: MaterialButton(
-                        child: Text(
+                        child: const Text(
                           'طلب خدمة',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: Text(
-                                'تم إرسال طلبك',
+                        onPressed: () async {
+                          bool successfullySent =
+                              await AddAppointmentServices.addAppointment(
+                                  AuthServices.signedInUser.ID, 'إعاقة جسدية');
+                          if (successfullySent) {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Text(
+                                  'تم إرسال طلبك',
+                                ),
+                                content: const Text(
+                                    'الرجاء الإنتظار لحين موافقه مختص'),
+                                actions: [
+                                  TextButton(
+                                    child: const Text(
+                                      'موافق',
+                                      style: TextStyle(
+                                          fontSize: 12.0,
+                                          color: Colors.blueAccent),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const HomePatient(),
+                                          ));
+                                    },
+                                  )
+                                ],
                               ),
-                              content: Text('الرجاء الإنتظار لحين موافقه مختص'),
-                              actions: [
-                                TextButton(
-                                  child: Text(
-                                    'موافق',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Colors.blueAccent),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              PatientHomePage(),
-                                        ));
-                                  },
-                                )
-                              ],
-                            ),
-                          );
+                            );
+                          }
                         },
                       ),
                     ),

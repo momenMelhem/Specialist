@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:specialist/services/AddAppointmentServices.dart';
 
-import 'PatientHomePage.dart';
+import '../services/AuthServices.dart';
+import '../specialistHomePage.dart';
+import '../home_page_patient.dart';
 
-class LearningDifficulties extends StatelessWidget {
-  const LearningDifficulties({Key? key}) : super(key: key);
+class DownsSyndrome extends StatelessWidget {
+  const DownsSyndrome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +16,7 @@ class LearningDifficulties extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.teal[900],
           centerTitle: true,
-          title: Text('صعوبات التعلم'),
+          title: const Text('متلازمة داون'),
         ),
         body: Container(
           height: double.infinity,
@@ -36,8 +39,9 @@ class LearningDifficulties extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            child: Text(
-                              'نوفر فريقا من المتخصصين يعدون برامج تعليمية تساعد على تطوير نقاط الضعف للطفل وتنمية نقاط القوة للطفل وتنمية نقاط الضعف للطفل وتنمية نقاط قوته , وبالتالي التخلص من مشكلة صعوبة التعلم.',
+                            child: const Text(
+                              'متلازمة داون هي حالة وراثية بسبب كروموسوم اضافي تؤثر على النمو'
+                              'العقلي للمصاب ونوفر مختصين مؤهلين لمساعدة المصاب على التعامل مع المجتمع المحيط بسهولة من خلال برامج تعليمية وتدريبية والعمل على تطوير القدرات ',
                               textAlign: TextAlign.center,
                               textDirection: TextDirection.rtl,
                               style: TextStyle(
@@ -48,7 +52,7 @@ class LearningDifficulties extends StatelessWidget {
                             ),
                             color: Colors.white,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30.0,
                           ),
                           Container(
@@ -93,7 +97,10 @@ class LearningDifficulties extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 100.0,
+                    vertical: 20,
+                  ),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -101,39 +108,47 @@ class LearningDifficulties extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     child: MaterialButton(
-                      child: Text(
+                      child: const Text(
                         'طلب خدمة',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: Text(
-                              'تم إرسال طلبك',
+                      onPressed: () async {
+                        bool successfullySent =
+                            await AddAppointmentServices.addAppointment(
+                                AuthServices.signedInUser.ID, 'متلازمة داون');
+                        if (successfullySent) {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text(
+                                'تم إرسال طلبك',
+                              ),
+                              content: const Text(
+                                  'الرجاء الإنتظار لحين موافقه مختص'),
+                              actions: [
+                                TextButton(
+                                  child: const Text(
+                                    'موافق',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Colors.blueAccent),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const HomePatient(),
+                                        ));
+                                  },
+                                )
+                              ],
                             ),
-                            content: Text('الرجاء الإنتظار لحين موافقه مختص'),
-                            actions: [
-                              TextButton(
-                                child: Text(
-                                  'موافق',
-                                  style: TextStyle(
-                                      fontSize: 12.0, color: Colors.blueAccent),
-                                ),
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => PatientHomePage(),
-                                      ));
-                                },
-                              )
-                            ],
-                          ),
-                        );
+                          );
+                        }
                       },
                     ),
                   ),

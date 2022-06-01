@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:specialist/page/dash_board.dart';
-import 'package:specialist/page/profile.dart';
+import 'package:specialist/page/patientProfile.dart';
 import 'package:specialist/page/search.dart';
 import 'package:specialist/page/showReports.dart';
 import 'package:specialist/requset_specialist.dart';
@@ -16,7 +16,7 @@ class _HomePatientState extends State<HomePatient> {
   int currentTab = 0;
   final List<Widget> screens = [
     Dashboard(),
-    Profile(),
+    PatientProfile(),
     Search(),
   ];
   final PageStorageBucket bucket = PageStorageBucket();
@@ -38,12 +38,14 @@ class _HomePatientState extends State<HomePatient> {
                 builder: (context) => RequestSpe(),
               ));
         },
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
-        notchMargin: 5.0,
+        notchMargin: 13.0,
         child: Container(
           height: 60.0,
           child: Row(
@@ -131,7 +133,7 @@ class _HomePatientState extends State<HomePatient> {
                   MaterialButton(
                     onPressed: () {
                       setState(() {
-                        currentScreen = Profile();
+                        currentScreen = PatientProfile();
                         currentTab = 3;
                       });
                     },

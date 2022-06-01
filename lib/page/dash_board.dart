@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:specialist/constants/Constants.dart';
+import 'package:specialist/model/Appointments.dart';
+import 'package:specialist/services/AuthServices.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -8,27 +11,46 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  Appointment appointment = Appointment('', '', '', '', '', '');
+
+  @override
+  void initState() {
+    super.initState();
+    createAppointment();
+  }
+
+  void createAppointment() async {
+    appointment = Appointment.fromDoc(await appointmentReference
+        .doc(AuthServices.signedInUser.appointmentId)
+        .get());
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.teal[900],
+          backgroundColor: Colors.teal[600],
           centerTitle: true,
-          title: Text(
+          bottomOpacity: 0.0,
+          elevation: 0.0,
+          title: const Text(
             'Special',
-            style: TextStyle(fontSize: 17.0, color: Colors.white),
+            style: TextStyle(
+                fontSize: 17.0,
+                color: Colors.white,
+                fontWeight: FontWeight.bold),
           ),
         ),
         body: Container(
           width: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                const Color(0xff00897b),
-                const Color(0xff80cbc4),
+                Color(0xff00897b),
+                Color(0xff80cbc4),
               ])),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -42,15 +64,21 @@ class _DashboardState extends State<Dashboard> {
                       context: context,
                       builder: (context) => AlertDialog(
                         title: Text(
-                          'حالة الطلب',
+                          appointment.status.isNotEmpty
+                              ? appointment.status
+                              : "لا يوجد طلب",
                         ),
-                        content: Text('الرجاء الإنتظار لحين موافقه مختص'),
+                        content: Text(appointment.status == 'pending'
+                            ? 'الرجاء الإنتظار لحين موافقه مختص'
+                            : appointment.status == 'approved'
+                                ? 'تم قبول طلبك من قبل : ${appointment.specialistName}'
+                                : ''),
                         actions: [
                           TextButton(
                             onPressed: () {
                               Navigator.pop(context, 'موافق');
                             },
-                            child: Text(
+                            child: const Text(
                               'موافق',
                               style: TextStyle(
                                   fontSize: 12.0, color: Colors.blueAccent),
@@ -60,7 +88,7 @@ class _DashboardState extends State<Dashboard> {
                       ),
                     );
                   },
-                  child: Center(
+                  child: const Center(
                       child: Text(
                     'الطلبات',
                     style: TextStyle(
@@ -77,7 +105,7 @@ class _DashboardState extends State<Dashboard> {
                       ))),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               SizedBox(
@@ -88,16 +116,18 @@ class _DashboardState extends State<Dashboard> {
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
-                        title: Text(
+                        title: const Text(
                           'المواعيد',
                         ),
-                        content: Text('الموعد القادم'),
+                        content: Text(appointment.status == 'approved'
+                            ? 'تم تحديد موعدك في : ${appointment.date} - ${appointment.time}'
+                            : 'لم يتم تحديد موعد '),
                         actions: [
                           TextButton(
                             onPressed: () {
                               Navigator.pop(context, 'موافق');
                             },
-                            child: Text(
+                            child: const Text(
                               'موافق',
                               style: TextStyle(
                                   fontSize: 12.0, color: Colors.blueAccent),
@@ -107,7 +137,7 @@ class _DashboardState extends State<Dashboard> {
                       ),
                     );
                   },
-                  child: Center(
+                  child: const Center(
                       child: Text(
                     'المواعيد',
                     style: TextStyle(
