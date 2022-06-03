@@ -35,8 +35,17 @@ class AppointmentListTile extends StatelessWidget {
               return appointment.status == 'approved'
                   ? Card(
                       child: ListTile(
-                        title: Text(patient.firstName + " " + patient.lastName),
-                        subtitle: Text(appointment.date),
+                        title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(patient.firstName + " " + patient.lastName),
+                            Text(patient.phoneNO),
+                          ],
+                        ),
+                        subtitle: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(appointment.date),
+                        ),
                         leading: CircleAvatar(
                             backgroundImage: patient.profilePicURL.isNotEmpty
                                 ? NetworkImage(patient.profilePicURL)

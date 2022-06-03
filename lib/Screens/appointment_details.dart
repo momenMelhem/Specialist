@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:specialist/Widgets/big_text.dart';
 import 'package:specialist/constants/Constants.dart';
+import 'package:specialist/dialogs/Dialogs.dart';
 import 'package:specialist/model/Appointments.dart';
 import 'package:specialist/model/Users.dart';
 import 'package:specialist/services/AuthServices.dart';
@@ -76,6 +77,13 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
               "date": _date,
               "time": _time,
             });
+            showDialog<void>(
+                context: context,
+                barrierDismissible: false,
+                builder: (context) => ErrorDialog(
+                      title: "Successful!",
+                      text: "تم اضافة موعد",
+                    ));
           },
         )
       ],
@@ -112,8 +120,7 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                   padding: EdgeInsets.zero,
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.9),
-                    borderRadius:
-                        const BorderRadius.all(const Radius.circular(20.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                   ),
                   child: ToggleButtons(
                     renderBorder: false,
@@ -129,10 +136,10 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                       maxHeight: 90.0,
                       minWidth: 120.0,
                     ),
-                    children: [
-                      const Padding(
+                    children: const [
+                      Padding(
                         padding: EdgeInsets.all(15.0),
-                        child: const Text(
+                        child: Text(
                           'الموعد',
                           style: TextStyle(
                             fontSize: 16.0,
@@ -140,11 +147,11 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                           ),
                         ),
                       ),
-                      const Padding(
-                        padding: const EdgeInsets.all(15),
+                      Padding(
+                        padding: EdgeInsets.all(15),
                         child: Text(
                           'التقارير',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -207,7 +214,13 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                                 userReference.doc(widget.patient.ID).update({
                                   'reportsIds': FieldValue.arrayUnion([id])
                                 });
-                                Navigator.pop(context);
+                                showDialog<void>(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (context) => ErrorDialog(
+                                          title: "Successful!",
+                                          text: "تم ارسال التقرير بنجاح",
+                                        ));
                               }
                             },
                           )
@@ -222,6 +235,17 @@ class _AppointmentDetailsState extends State<AppointmentDetails> {
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           fontSize: 17.0, fontStyle: FontStyle.italic),
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      widget.patient.phoneNO,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 18.0, fontStyle: FontStyle.italic),
                     ),
                   ),
                 ),

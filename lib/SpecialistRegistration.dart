@@ -18,15 +18,6 @@ class SpecialistRegistrationState extends State<SpecialistRegistration> {
   String _phoneNumber = '';
   DateTime _bDate = DateTime(2022, 5, 11);
   var _major;
-  List listMajor = [
-    'إعاقة سمعية',
-    'إعاقة بصرية',
-    'التوحد',
-    'متلازمة داون',
-    'صعوبات النطق',
-    'صعوبات التعلم',
-    'إعاقة جسدية'
-  ];
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -204,13 +195,13 @@ class SpecialistRegistrationState extends State<SpecialistRegistration> {
                 style: TextStyle(color: Colors.grey.shade700, fontSize: 16),
               ),
               items: [
-                'إعاقه سمعية',
-                'إعاقه بصرية',
+                'إعاقة سمعية',
+                'إعاقة بصرية',
                 'التوحد',
-                'متلازمه داون',
+                'متلازمة داون',
                 'صعوبات النطق',
                 'صعوبات التعلم',
-                'إعاقه جسدية'
+                'إعاقة جسدية'
               ]
                   .map((String item) =>
                       DropdownMenuItem<String>(child: Text(item), value: item))

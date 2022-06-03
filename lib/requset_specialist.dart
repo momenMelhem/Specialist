@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:specialist/cases/Autism.dart';
 import 'package:specialist/cases/hearing_disability.dart';
@@ -8,7 +7,6 @@ import 'package:specialist/cases/visual_disability.dart';
 
 import 'cases/downs_syndrome.dart';
 import 'cases/learning_difficulties.dart';
-import 'specialistHomePage.dart';
 
 class RequestSpe extends StatelessWidget {
   const RequestSpe({Key? key}) : super(key: key);
@@ -20,7 +18,7 @@ class RequestSpe extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.teal[900],
           centerTitle: true,
-          title: Text(
+          title: const Text(
             'طلب مختص',
             style: TextStyle(
               fontSize: 20.0,
@@ -45,16 +43,15 @@ class RequestSpe extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Autism(),
+                            builder: (context) => const Autism(),
                           ));
                     },
                     child: Row(
-                      children: [
+                      children: const [
                         Padding(
-                          padding: const EdgeInsets.only(left: 1.0),
+                          padding: EdgeInsets.only(left: 1.0),
                           child: Image(
-                            image: NetworkImage(
-                                'https://www.emaratalyoum.com/polopoly_fs/1.541793.1462522863!/image/image.jpg'),
+                            image: AssetImage('assets/images/autism.jpg'),
                             width: 100.0,
                             height: 100.0,
                             fit: BoxFit.cover,
@@ -77,7 +74,7 @@ class RequestSpe extends StatelessWidget {
                   ),
                 ),
               ), //done
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
               Padding(
@@ -93,16 +90,15 @@ class RequestSpe extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => VisualDisability(),
+                            builder: (context) => const VisualDisability(),
                           ));
                     },
                     child: Row(
-                      children: [
+                      children: const [
                         Padding(
-                          padding: const EdgeInsets.only(left: 1.0),
+                          padding: EdgeInsets.only(left: 1.0),
                           child: Image(
-                            image: NetworkImage(
-                                'https://www.ruokn.com/wp-content/uploads/2019/07/%D8%B7%D8%B1%D9%8A%D9%82%D8%A9-%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%85%D9%84-%D9%85%D8%B9-%D8%A7%D9%84%D8%B7%D9%81%D9%84-%D8%B0%D9%88-%D8%A7%D9%84%D8%A5%D8%B9%D8%A7%D9%82%D8%A9-%D8%A7%D9%84%D8%A8%D8%B5%D8%B1%D9%8A%D8%A9-1.jpg'),
+                            image: AssetImage('assets/images/visiual.jpg'),
                             width: 100.0,
                             height: 100.0,
                             fit: BoxFit.cover,
@@ -125,7 +121,7 @@ class RequestSpe extends StatelessWidget {
                   ),
                 ),
               ), //done
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
               Padding(
@@ -141,16 +137,15 @@ class RequestSpe extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => PhysicalDisability(),
+                            builder: (context) => const PhysicalDisability(),
                           ));
                     },
                     child: Row(
-                      children: [
+                      children: const [
                         Padding(
-                          padding: const EdgeInsets.only(left: 1.0),
+                          padding: EdgeInsets.only(left: 1.0),
                           child: Image(
-                            image: NetworkImage(
-                                'https://www.nessma.tv/uploads/news/bc488ad04cd5b9d20c31b1e41f46b28b81.jpg'),
+                            image: AssetImage('assets/images/physical.jpg'),
                             width: 100.0,
                             height: 100.0,
                             fit: BoxFit.cover,
@@ -173,7 +168,7 @@ class RequestSpe extends StatelessWidget {
                   ),
                 ),
               ), //done
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
               Padding(
@@ -189,16 +184,15 @@ class RequestSpe extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => HearingDisability(),
+                            builder: (context) => const HearingDisability(),
                           ));
                     },
                     child: Row(
-                      children: [
+                      children: const [
                         Padding(
-                          padding: const EdgeInsets.only(left: 1.0),
+                          padding: EdgeInsets.only(left: 1.0),
                           child: Image(
-                            image: NetworkImage(
-                                'https://hyatoky.com/mwfiles/thumbs/fit630x300/16267/1618828224/%D8%B7%D8%B1%D9%82_%D8%AA%D8%AF%D8%B1%D9%8A%D8%B3_%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D9%82%D9%8A%D9%86_%D8%B3%D9%85%D8%B9%D9%8A%D8%A7.jpeg'),
+                            image: AssetImage('assets/images/hearing.jpg'),
                             width: 100.0,
                             height: 100.0,
                             fit: BoxFit.cover,
@@ -221,7 +215,7 @@ class RequestSpe extends StatelessWidget {
                   ),
                 ),
               ), //done
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
               Padding(
@@ -237,16 +231,15 @@ class RequestSpe extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LearningDifficulties(),
+                            builder: (context) => const LearningDifficulties(),
                           ));
                     },
                     child: Row(
-                      children: [
+                      children: const [
                         Padding(
-                          padding: const EdgeInsets.only(left: 1.0),
+                          padding: EdgeInsets.only(left: 1.0),
                           child: Image(
-                            image: NetworkImage(
-                                'https://modo3.com/thumbs/fit630x300/71092/1448546054/%D9%83%D9%8A%D9%81_%D8%AA%D8%B9%D8%A7%D9%84%D8%AC_%D8%B5%D8%B9%D9%88%D8%A8%D8%A7%D8%AA_%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%85.jpg'),
+                            image: AssetImage('assets/images/learning.jpg'),
                             width: 100.0,
                             height: 100.0,
                             fit: BoxFit.cover,
@@ -269,7 +262,7 @@ class RequestSpe extends StatelessWidget {
                   ),
                 ),
               ), //done
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
               Padding(
@@ -285,16 +278,15 @@ class RequestSpe extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => SpeechDifficlties(),
+                            builder: (context) => const SpeechDifficlties(),
                           ));
                     },
                     child: Row(
-                      children: [
+                      children: const [
                         Padding(
-                          padding: const EdgeInsets.only(left: 1.0),
+                          padding: EdgeInsets.only(left: 1.0),
                           child: Image(
-                            image: NetworkImage(
-                                'https://lh3.googleusercontent.com/3fi2IzN1rmPxel37L2CuEG7O6Y0RALnAzyGM4oG2pVtfpyYJogOr2m0JiAqM3ieUqEmJ1lBfsApgqdB3BtEpZc5PIR3I5Ll0bPYiBKOY-xf7npBSDzw5NGl_mhiEjKeDEm6iMiZz=w1200-h630-p-k-no-nu'),
+                            image: AssetImage('assets/images/speech.jpg'),
                             width: 100.0,
                             height: 100.0,
                             fit: BoxFit.cover,
@@ -317,7 +309,7 @@ class RequestSpe extends StatelessWidget {
                   ),
                 ),
               ), //done
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
               Padding(
@@ -333,16 +325,15 @@ class RequestSpe extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DownsSyndrome(),
+                            builder: (context) => const DownsSyndrome(),
                           ));
                     },
                     child: Row(
-                      children: [
+                      children: const [
                         Padding(
-                          padding: const EdgeInsets.only(left: 1.0),
+                          padding: EdgeInsets.only(left: 1.0),
                           child: Image(
-                            image: NetworkImage(
-                                'https://media.gemini.media/img/large/2018/3/20/2018_3_20_16_25_18_863.jpg'),
+                            image: AssetImage('assets/images/downs.jpg'),
                             width: 100.0,
                             height: 100.0,
                             fit: BoxFit.cover,
@@ -365,7 +356,7 @@ class RequestSpe extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ) //done
             ],

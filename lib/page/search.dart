@@ -9,6 +9,7 @@ import 'package:specialist/cases/speech_difficulties.dart';
 import 'package:specialist/cases/visual_disability.dart';
 import 'package:specialist/constants/Constants.dart';
 import 'package:specialist/model/Users.dart';
+import 'package:specialist/services/AuthServices.dart';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
+  List<SpecialistCard> specialistCards = [];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,8 +35,12 @@ class _SearchState extends State<Search> {
               );
             }
             allSpecialists.clear();
+            specialistCards.clear();
             for (var specialist in snapshot.data!.docs) {
               allSpecialists.add(UserModel.fromDoc(specialist));
+            }
+            for (UserModel specialist in allSpecialists) {
+              specialistCards.add(SpecialistCard(specialist: specialist));
             }
             return Scaffold(
               appBar: AppBar(
@@ -69,9 +75,55 @@ class _SearchState extends State<Search> {
                     ],
                   ),
                 ),
+                child: Column(
+                  children: specialistCards,
+                ),
               ),
             );
           }),
+    );
+  }
+}
+
+class SpecialistCard extends StatelessWidget {
+  const SpecialistCard({
+    required this.specialist,
+    Key? key,
+  }) : super(key: key);
+  final UserModel specialist;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Card(
+        color: const Color(0xffe5e5e5),
+        child: SizedBox(
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(specialist.firstName + " " + specialist.lastName,
+                    style: TextStyle(fontSize: 18)),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25.0),
+                child: Text(specialist.major, style: TextStyle(fontSize: 15)),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
+                child: Text(
+                  specialist.phoneNO,
+                  style: TextStyle(fontSize: 17),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -144,7 +196,13 @@ class CustomSearch extends SearchDelegate {
                         ),
                       );
                     },
-                    child: Text(result!.firstName + " " + result.lastName)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(result!.firstName + " " + result.lastName),
+                        Text(result.phoneNO)
+                      ],
+                    )),
               );
             },
           );
@@ -152,19 +210,57 @@ class CustomSearch extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    List<String> machQuery = [];
+    List<UserModel> machQuery = [];
     for (var item in allSpecialists) {
       if ((item.firstName + " " + item.lastName)
           .toLowerCase()
-          .contains(query.toLowerCase())) {
-        machQuery.add((item.firstName + " " + item.lastName));
-      }
+          .contains(query.toLowerCase())) machQuery.add(item);
     }
-    return ListView.builder(itemBuilder: (context, index) {
-      var result = machQuery[index];
-      return ListTile(
-        title: Text(result),
-      );
-    });
+    return machQuery.isEmpty
+        ? const Center(
+            child: Text(
+            "no result",
+            style: TextStyle(fontSize: 18),
+          ))
+        : ListView.builder(
+            itemCount: machQuery.length,
+            itemBuilder: (context, index) {
+              UserModel? result;
+              if (machQuery.isNotEmpty) result = machQuery[index];
+
+              return ListTile(
+                title: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SafeArea(
+                              child: result!.major == 'التوحد'
+                                  ? const Autism()
+                                  : result.major == 'إعاقة بصرية'
+                                      ? const VisualDisability()
+                                      : result.major == 'إعاقة سمعية'
+                                          ? const HearingDisability()
+                                          : result.major == 'إعاقة جسدية'
+                                              ? const PhysicalDisability()
+                                              : result.major == 'متلازمة داون'
+                                                  ? const DownsSyndrome()
+                                                  : result.major ==
+                                                          'صعوبات التعلم'
+                                                      ? const LearningDifficulties()
+                                                      : const SpeechDifficlties()),
+                        ),
+                      );
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(result!.firstName + " " + result.lastName),
+                        Text(result.phoneNO)
+                      ],
+                    )),
+              );
+            },
+          );
   }
 }

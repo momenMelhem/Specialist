@@ -116,7 +116,7 @@ class Autism extends StatelessWidget {
                         bool successfullySent =
                             await AddAppointmentServices.addAppointment(
                                 AuthServices.signedInUser.ID, 'توحد');
-                        if (successfullySent)
+                        if (successfullySent) {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
@@ -145,6 +145,7 @@ class Autism extends StatelessWidget {
                               ],
                             ),
                           );
+                        }
                       },
                     ),
                   ),

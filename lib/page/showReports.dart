@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:specialist/constants/Constants.dart';
 import 'package:specialist/model/Reports.dart';
@@ -10,9 +11,9 @@ class ShowReports extends StatefulWidget {
   State<ShowReports> createState() => _ShowReportsState();
 }
 
-class _ShowReportsState extends State<ShowReports> {
-  List<Widget> _reports = [];
+List<Widget> _reports = [];
 
+class _ShowReportsState extends State<ShowReports> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -94,10 +95,26 @@ class ReportWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(report.specialistName,
-                        style: TextStyle(fontSize: 18)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            _reports.remove(ReportWidget(reportId: reportId));
+                            userReference.doc(report.patientId).update({
+                              'reportsIds': FieldValue.arrayRemove([reportId])
+                            });
+                            reportReference.doc(reportId).delete();
+                            AuthServices.signedInUser.reportsIds
+                                .remove(reportId);
+                          },
+                          icon: Icon(Icons.clear)),
+                      Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(report.specialistName,
+                            style: TextStyle(fontSize: 18)),
+                      ),
+                    ],
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25.0),

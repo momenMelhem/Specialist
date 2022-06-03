@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:specialist/SignInPage.dart';
 import 'package:specialist/constants/Constants.dart';
+import 'package:specialist/dialogs/Dialogs.dart';
 import 'package:specialist/home_page_patient.dart';
 import 'package:specialist/services/AuthServices.dart';
 import 'package:specialist/services/StorageServices.dart';
@@ -161,13 +162,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             .doc(AuthServices.signedInUser.ID)
                             .update({'phoneNO': _phoneNO});
                       }
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  AuthServices.signedInUser.type == "patient"
-                                      ? const HomePatient()
-                                      : const SpecialistHomePage()));
+                      if (_email.isEmpty && _password.isEmpty) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    AuthServices.signedInUser.type == "patient"
+                                        ? const HomePatient()
+                                        : const SpecialistHomePage()));
+                      }
                     },
                     color: Colors.teal[900],
                     shape: RoundedRectangleBorder(
@@ -192,6 +195,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
         email: AuthServices.signedInUser.email,
         password: AuthServices.signedInUser.password);
 
+    showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => WaitingDialog());
     await user!.reauthenticateWithCredential(cred).then(
       (value) {
         user.updateEmail(newEmail).then(
@@ -213,14 +220,28 @@ class _EditProfilePageState extends State<EditProfilePage> {
           },
         ).catchError(
           (error) {
-            print(error);
+            Navigator.pop(context);
+            showDialog<void>(
+                context: context,
+                barrierDismissible: false,
+                builder: (context) => ErrorDialog(
+                      title: "ERROR",
+                      text: error.toString(),
+                    ));
             return false;
           },
         );
       },
     ).catchError(
       (err) {
-        print(err);
+        Navigator.pop(context);
+        showDialog<void>(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => ErrorDialog(
+                  title: "ERROR",
+                  text: err.toString(),
+                ));
         return false;
       },
     );
@@ -233,6 +254,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
     String password = AuthServices.signedInUser.password;
     final cred = EmailAuthProvider.credential(email: email, password: password);
 
+    showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => WaitingDialog());
     await user!.reauthenticateWithCredential(cred).then(
       (value) {
         user.updatePassword(newPassword).then(
@@ -240,6 +265,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             userReference.doc(AuthServices.signedInUser.ID).update(
               {'password': newPassword},
             );
+            Navigator.pop(context);
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -254,14 +280,28 @@ class _EditProfilePageState extends State<EditProfilePage> {
           },
         ).catchError(
           (error) {
-            print(error);
+            Navigator.pop(context);
+            showDialog<void>(
+                context: context,
+                barrierDismissible: false,
+                builder: (context) => ErrorDialog(
+                      title: "ERROR",
+                      text: error.toString(),
+                    ));
             return false;
           },
         );
       },
     ).catchError(
       (err) {
-        print(err);
+        Navigator.pop(context);
+        showDialog<void>(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => ErrorDialog(
+                  title: "ERROR",
+                  text: err.toString(),
+                ));
         return false;
       },
     );
