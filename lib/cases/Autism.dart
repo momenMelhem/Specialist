@@ -115,7 +115,7 @@ class Autism extends StatelessWidget {
                       onPressed: () async {
                         bool successfullySent =
                             await AddAppointmentServices.addAppointment(
-                                AuthServices.signedInUser.ID, 'توحد');
+                                AuthServices.signedInUser.ID, 'التوحد');
                         if (successfullySent) {
                           showDialog(
                             context: context,

@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:specialist/Screens/appointment_details.dart';
 import 'package:specialist/Widgets/appointment_list_tile.dart';
 import 'package:specialist/constants/Constants.dart';
 import 'package:specialist/model/Appointments.dart';
+import 'package:specialist/model/Users.dart';
 import 'package:specialist/services/AuthServices.dart';
 
 class AppointmentSchedule extends StatefulWidget {
@@ -36,12 +38,22 @@ class _State extends State<AppointmentSchedule> {
           }
           return Scaffold(
             appBar: AppBar(
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      showSearch(context: context, delegate: CustomSearch());
+                    },
+                    icon: const Icon(
+                      Icons.search,
+                      size: 28,
+                    ))
+              ],
               centerTitle: true,
               backgroundColor: const Color(0xff00897b),
               bottomOpacity: 0.0,
               elevation: 0.0,
               title: const Text(
-                "المواعيد",
+                "سجل المرضى",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -64,6 +76,135 @@ class _State extends State<AppointmentSchedule> {
           );
         },
       ),
+    );
+  }
+}
+
+Map<Appointment, UserModel> A_U = {};
+
+class CustomSearch extends SearchDelegate {
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+        onPressed: () {
+          query = '';
+        },
+        icon: const Icon(Icons.clear),
+      )
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+        onPressed: () {
+          close(context, null);
+        },
+        icon: const Icon(Icons.arrow_back));
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    Map machQuery = {};
+    List<Widget> patients = [];
+    A_U.forEach((key, value) {
+      if ((value.firstName + " " + value.lastName)
+          .toLowerCase()
+          .contains(query.toLowerCase())) {
+        machQuery[key] = value;
+      }
+    });
+    machQuery.forEach((key, value) {
+      patients.add(GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AppointmentDetails(
+                appointment: key,
+                patient: value,
+              ),
+            ),
+          );
+        },
+        child: Card(
+          child: ListTile(
+            title: Text(value.firstName + " " + value.lastName),
+            leading: CircleAvatar(
+                backgroundImage: value.profilePicURL.isNotEmpty
+                    ? NetworkImage(value.profilePicURL) as ImageProvider
+                    : AssetImage('assets/images/profile.jpg')),
+            trailing: const Icon(Icons.arrow_forward),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AppointmentDetails(
+                    appointment: key,
+                    patient: value,
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ));
+    });
+    return Column(
+      children: patients,
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    Map machQuery = {};
+    List<Widget> patients = [];
+    A_U.forEach((key, value) {
+      if ((value.firstName + " " + value.lastName)
+          .toLowerCase()
+          .contains(query.toLowerCase())) {
+        machQuery[key] = value;
+      }
+    });
+    machQuery.forEach((key, value) {
+      patients.add(GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AppointmentDetails(
+                appointment: key,
+                patient: value,
+              ),
+            ),
+          );
+        },
+        child: Card(
+          child: ListTile(
+            title: Text(value.firstName + " " + value.lastName),
+            leading: CircleAvatar(
+                backgroundImage: value.profilePicURL.isNotEmpty
+                    ? NetworkImage(value.profilePicURL) as ImageProvider
+                    : AssetImage('assets/images/profile.jpg')),
+            trailing: const Icon(Icons.arrow_forward),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AppointmentDetails(
+                    appointment: key,
+                    patient: value,
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ));
+    });
+    return Column(
+      children: patients,
     );
   }
 }

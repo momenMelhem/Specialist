@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:specialist/Screens/appointmentschedul.dart';
 import 'package:specialist/constants/Constants.dart';
 import 'package:specialist/model/Appointments.dart';
 import 'package:specialist/model/Users.dart';
@@ -32,6 +33,8 @@ class AppointmentListTile extends StatelessWidget {
                 ));
               }
               UserModel patient = UserModel.fromDoc(snapshot.data);
+              A_U.removeWhere((key, value) => value.ID == patient.ID);
+              A_U[appointment] = patient;
               return appointment.status == 'approved'
                   ? Card(
                       child: ListTile(

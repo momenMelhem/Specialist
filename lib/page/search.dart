@@ -75,8 +75,13 @@ class _SearchState extends State<Search> {
                     ],
                   ),
                 ),
-                child: Column(
-                  children: specialistCards,
+                child: SingleChildScrollView(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height,
+                    child: Column(
+                      children: specialistCards,
+                    ),
+                  ),
                 ),
               ),
             );

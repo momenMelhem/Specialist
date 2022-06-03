@@ -117,13 +117,13 @@ class _AppointmentRequestState extends State<AppointmentRequest> {
                                             patient.dateOB.substring(0, 4))))
                                     .toString(),
                                 textInputType: TextInputType.number,
-                                color: Color(0Xffe5e5e5)),
+                                color: const Color(0Xffe5e5e5)),
                             const SizedBox(height: 10),
                             RoundedEmailInput(
                                 icon: Icons.disabled_by_default,
                                 hint: appointment.illness,
                                 textInputType: TextInputType.emailAddress,
-                                color: Color(0Xffe5e5e5)),
+                                color: const Color(0Xffe5e5e5)),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -167,7 +167,7 @@ class _AppointmentRequestState extends State<AppointmentRequest> {
                                     style: TextButton.styleFrom(),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 15,
                                 ),
                                 Container(
@@ -201,8 +201,8 @@ class _AppointmentRequestState extends State<AppointmentRequest> {
                                           .doc(patient.ID)
                                           .update({'appointmentId': ""});
                                     },
-                                    child: Text('رفض',
-                                        style: const TextStyle(
+                                    child: const Text('رفض',
+                                        style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18.0,
                                         )),
