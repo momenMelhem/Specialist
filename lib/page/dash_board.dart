@@ -37,9 +37,10 @@ class _DashboardState extends State<Dashboard> {
           title: const Text(
             'Special',
             style: TextStyle(
-                fontSize: 17.0,
-                color: Colors.white,
-                fontWeight: FontWeight.bold),
+              fontSize: 21.0,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         body: Container(

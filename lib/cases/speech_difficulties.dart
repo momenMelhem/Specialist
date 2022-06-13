@@ -16,7 +16,14 @@ class SpeechDifficlties extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.teal[900],
           centerTitle: true,
-          title: const Text('صعوبات النطق'),
+          title: const Text(
+            'صعوبات النطق',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 21.0,
+              color: Colors.white,
+            ),
+          ),
         ),
         body: Container(
           height: double.infinity,
@@ -112,6 +119,7 @@ class SpeechDifficlties extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
+                          fontSize: 18.0,
                         ),
                       ),
                       onPressed: () async {

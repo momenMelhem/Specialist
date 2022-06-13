@@ -40,7 +40,7 @@ class _ShowReportsState extends State<ShowReports> {
               title: const Text(
                 'التقارير',
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: 22.0,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),

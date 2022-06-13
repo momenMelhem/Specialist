@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../services/AddAppointmentServices.dart';
 import '../services/AuthServices.dart';
-import '../specialistHomePage.dart';
 import '../home_page_patient.dart';
 
 class LearningDifficulties extends StatelessWidget {
@@ -16,7 +15,14 @@ class LearningDifficulties extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.teal[900],
           centerTitle: true,
-          title: const Text('صعوبات التعلم'),
+          title: const Text(
+            'صعوبات التعلم',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 21.0,
+              color: Colors.white,
+            ),
+          ),
         ),
         body: Container(
           height: double.infinity,
@@ -109,6 +115,7 @@ class LearningDifficulties extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
+                          fontSize: 18.0,
                         ),
                       ),
                       onPressed: () async {

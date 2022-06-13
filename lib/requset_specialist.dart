@@ -21,8 +21,9 @@ class RequestSpe extends StatelessWidget {
           title: const Text(
             'طلب مختص',
             style: TextStyle(
-              fontSize: 20.0,
+              fontSize: 21.0,
               color: Colors.white,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
@@ -47,6 +48,7 @@ class RequestSpe extends StatelessWidget {
                           ));
                     },
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
                         Padding(
                           padding: EdgeInsets.only(left: 1.0),
@@ -56,9 +58,6 @@ class RequestSpe extends StatelessWidget {
                             height: 100.0,
                             fit: BoxFit.cover,
                           ),
-                        ),
-                        SizedBox(
-                          width: 180.0,
                         ),
                         Text(
                           'التوحد',
@@ -94,6 +93,7 @@ class RequestSpe extends StatelessWidget {
                           ));
                     },
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
                         Padding(
                           padding: EdgeInsets.only(left: 1.0),
@@ -103,9 +103,6 @@ class RequestSpe extends StatelessWidget {
                             height: 100.0,
                             fit: BoxFit.cover,
                           ),
-                        ),
-                        SizedBox(
-                          width: 117.0,
                         ),
                         Text(
                           'إعاقة بصرية',
@@ -141,6 +138,7 @@ class RequestSpe extends StatelessWidget {
                           ));
                     },
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
                         Padding(
                           padding: EdgeInsets.only(left: 1.0),
@@ -151,12 +149,9 @@ class RequestSpe extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        SizedBox(
-                          width: 117.0,
-                        ),
                         Text(
                           'إعاقه جسدية',
-                          textAlign: TextAlign.end,
+                          textAlign: TextAlign.right,
                           style: TextStyle(
                             fontSize: 25.0,
                             color: Colors.white,
@@ -188,6 +183,7 @@ class RequestSpe extends StatelessWidget {
                           ));
                     },
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
                         Padding(
                           padding: EdgeInsets.only(left: 1.0),
@@ -197,9 +193,6 @@ class RequestSpe extends StatelessWidget {
                             height: 100.0,
                             fit: BoxFit.cover,
                           ),
-                        ),
-                        SizedBox(
-                          width: 120.0,
                         ),
                         Text(
                           'إعاقة سمعية',
@@ -235,6 +228,7 @@ class RequestSpe extends StatelessWidget {
                           ));
                     },
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
                         Padding(
                           padding: EdgeInsets.only(left: 1.0),
@@ -244,9 +238,6 @@ class RequestSpe extends StatelessWidget {
                             height: 100.0,
                             fit: BoxFit.cover,
                           ),
-                        ),
-                        SizedBox(
-                          width: 107.0,
                         ),
                         Text(
                           'صعوبات التعلم',
@@ -282,6 +273,7 @@ class RequestSpe extends StatelessWidget {
                           ));
                     },
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
                         Padding(
                           padding: EdgeInsets.only(left: 1.0),
@@ -291,9 +283,6 @@ class RequestSpe extends StatelessWidget {
                             height: 100.0,
                             fit: BoxFit.cover,
                           ),
-                        ),
-                        SizedBox(
-                          width: 109.0,
                         ),
                         Text(
                           'صعوبات النطق',
@@ -329,6 +318,7 @@ class RequestSpe extends StatelessWidget {
                           ));
                     },
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
                         Padding(
                           padding: EdgeInsets.only(left: 1.0),
@@ -338,9 +328,6 @@ class RequestSpe extends StatelessWidget {
                             height: 100.0,
                             fit: BoxFit.cover,
                           ),
-                        ),
-                        SizedBox(
-                          width: 130.0,
                         ),
                         Text(
                           'متلازمة داون',

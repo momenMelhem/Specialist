@@ -37,7 +37,7 @@ class UserTypePage extends StatelessWidget {
                         "Special",
                         style: TextStyle(
                           fontFamily: 'Pacifico',
-                          fontSize: 60.0,
+                          fontSize: 55.0,
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                         ),

@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:specialist/home-page.dart';
-
 import '../services/AddAppointmentServices.dart';
 import '../services/AuthServices.dart';
-import '../specialistHomePage.dart';
 import '../home_page_patient.dart';
 
 class PhysicalDisability extends StatelessWidget {
@@ -18,7 +15,14 @@ class PhysicalDisability extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Colors.teal[900],
             centerTitle: true,
-            title: const Text('إعاقة جسديه'),
+            title: const Text(
+              'إعاقة جسدية',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 21.0,
+                color: Colors.white,
+              ),
+            ),
           ),
           body: Container(
             height: double.infinity,
@@ -114,6 +118,7 @@ class PhysicalDisability extends StatelessWidget {
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
                           ),
                         ),
                         onPressed: () async {

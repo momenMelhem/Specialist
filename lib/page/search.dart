@@ -51,7 +51,7 @@ class _SearchState extends State<Search> {
                   'بحث عن مختص',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

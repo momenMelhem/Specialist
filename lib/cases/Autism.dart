@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:specialist/services/AddAppointmentServices.dart';
 import 'package:specialist/services/AuthServices.dart';
-import '../specialistHomePage.dart';
 import '../home_page_patient.dart';
 
 class Autism extends StatelessWidget {
@@ -14,7 +13,16 @@ class Autism extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.teal[900],
           centerTitle: true,
-          title: const Text('التوحد'),
+          title: const Text(
+            'التوحد',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 21.0,
+              color: Colors.white,
+            ),
+          ),
+          elevation: 0.0,
+          bottomOpacity: 0.0,
         ),
         body: Container(
           height: double.infinity,
@@ -42,7 +50,7 @@ class Autism extends StatelessWidget {
                               textAlign: TextAlign.center,
                               textDirection: TextDirection.rtl,
                               style: TextStyle(
-                                fontSize: 20.0,
+                                fontSize: 21.0,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -110,6 +118,7 @@ class Autism extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
+                          fontSize: 18.0,
                         ),
                       ),
                       onPressed: () async {

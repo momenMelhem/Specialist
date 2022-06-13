@@ -15,7 +15,7 @@ class AppointmentSchedule extends StatefulWidget {
 }
 
 class _State extends State<AppointmentSchedule> {
-  List<Widget> _appointmentsList = [];
+  final List<Widget> _appointmentsList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +80,7 @@ class _State extends State<AppointmentSchedule> {
   }
 }
 
-Map<Appointment, UserModel> A_U = {};
+Map<Appointment, UserModel> appointmentPatientMap = {};
 
 class CustomSearch extends SearchDelegate {
   @override
@@ -108,7 +108,7 @@ class CustomSearch extends SearchDelegate {
   Widget buildSuggestions(BuildContext context) {
     Map machQuery = {};
     List<Widget> patients = [];
-    A_U.forEach((key, value) {
+    appointmentPatientMap.forEach((key, value) {
       if ((value.firstName + " " + value.lastName)
           .toLowerCase()
           .contains(query.toLowerCase())) {
@@ -134,7 +134,7 @@ class CustomSearch extends SearchDelegate {
             leading: CircleAvatar(
                 backgroundImage: value.profilePicURL.isNotEmpty
                     ? NetworkImage(value.profilePicURL) as ImageProvider
-                    : AssetImage('assets/images/profile.jpg')),
+                    : const AssetImage('assets/images/profile.jpg')),
             trailing: const Icon(Icons.arrow_forward),
             onTap: () {
               Navigator.push(
@@ -160,7 +160,7 @@ class CustomSearch extends SearchDelegate {
   Widget buildResults(BuildContext context) {
     Map machQuery = {};
     List<Widget> patients = [];
-    A_U.forEach((key, value) {
+    appointmentPatientMap.forEach((key, value) {
       if ((value.firstName + " " + value.lastName)
           .toLowerCase()
           .contains(query.toLowerCase())) {
@@ -186,7 +186,7 @@ class CustomSearch extends SearchDelegate {
             leading: CircleAvatar(
                 backgroundImage: value.profilePicURL.isNotEmpty
                     ? NetworkImage(value.profilePicURL) as ImageProvider
-                    : AssetImage('assets/images/profile.jpg')),
+                    : const AssetImage('assets/images/profile.jpg')),
             trailing: const Icon(Icons.arrow_forward),
             onTap: () {
               Navigator.push(

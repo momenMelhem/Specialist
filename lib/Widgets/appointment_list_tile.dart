@@ -33,8 +33,9 @@ class AppointmentListTile extends StatelessWidget {
                 ));
               }
               UserModel patient = UserModel.fromDoc(snapshot.data);
-              A_U.removeWhere((key, value) => value.ID == patient.ID);
-              A_U[appointment] = patient;
+              appointmentPatientMap
+                  .removeWhere((key, value) => value.ID == patient.ID);
+              appointmentPatientMap[appointment] = patient;
               return appointment.status == 'approved'
                   ? Card(
                       child: ListTile(
