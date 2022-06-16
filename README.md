@@ -20,4 +20,4 @@ Its a Cross platform app Developed with Flutter made for people with special nee
 ![Screenshot_20220616-211012](https://user-images.githubusercontent.com/87219675/174140931-9f0d9e2d-6d24-4637-9eb2-802e4d79636a.jpg)
 ![Screenshot_20220616-211101](https://user-images.githubusercontent.com/87219675/174140890-2d588912-1387-4e6b-909e-d54a5316c0bb.jpg)
 ![Screenshot_20220616-211053](https://user-images.githubusercontent.com/87219675/174141021-ff3a6fcf-9cac-4681-93e0-a208b0588778.jpg)
-![Screenshot_20220616-211053](https://user-images.githubusercontent.com/87219675/174141029-95c1f627-1ce3-4032-bfce-7b373767e26d.jpg)
+![Screenshot_20220616-211026](https://user-images.githubusercontent.com/87219675/174145786-1d8cc375-d4bc-4afe-acc4-ed5e26147d95.jpg)
